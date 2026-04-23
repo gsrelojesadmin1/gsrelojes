@@ -1,0 +1,369 @@
+{
+  "navbar": {
+    "brandName": "HOROLOGICAL EXCELLENCE",
+    "links": [
+      { "id": "1", "label": "Heritage", "href": "#" },
+      { "id": "2", "label": "Collections", "href": "#" },
+      { "id": "3", "label": "Complications", "href": "#" },
+      { "id": "4", "label": "Bespoke", "href": "#" },
+      { "id": "5", "label": "Service", "href": "#" }
+    ]
+  },
+  "hero": {
+    "badge": "ESTABLISHED 1892",
+    "title": "TIMELESS\nPRECISION",
+    "subtitle": "Experience the apex of Swiss engineering and artisanal craftsmanship. A legacy forged in gold and steel.",
+    "cta1Label": "DISCOVER THE COLLECTION",
+    "cta2Label": "OUR HERITAGE",
+    "backgroundImage": "https://lh3.googleusercontent.com/aida-public/AB6AXuBo4r2_nOlvLyUYR78UCo-5gnURHuFH6W7_IN62TozeHNnXriEATlWYBQMiOFPzW45e1s9wRD1xB44GqC-A7IjpuCU0Vx04edqzCfsS3M3bP5vcxojq6fkmK6AU-jpLD3pesd9F64NKgTZH-2lacDzCycxM_iQO3VHSAMA9FkW517Lu9PXqnVXqsYPIAfef_w4ZDMqYkMDGzMrjvBXAfcQ3MVM8SkouCFZcSymLW7NPs3fV633X63xUEJLtoqsC4RnlsHak__gWyt4"
+  },
+  "watchBrands": [
+    {
+      "id": "vacheron-constantin",
+      "name": "Vacheron Constantin",
+      "collections": [
+        {
+          "id": "patrimony",
+          "name": "Patrimony",
+          "models": [
+            { "id": "moon-phase", "name": "Moon Phase" },
+            { "id": "ultra-thin", "name": "Ultra-Thin" },
+            { "id": "traditional", "name": "Traditional" }
+          ]
+        },
+        {
+          "id": "overseas",
+          "name": "Overseas",
+          "models": [
+            { "id": "chronograph", "name": "Chronograph" },
+            { "id": "perpetual-calendar", "name": "Perpetual Calendar" }
+          ]
+        },
+        {
+          "id": "traditionnelle",
+          "name": "Traditionnelle",
+          "models": [
+            { "id": "minute-repeater", "name": "Minute Repeater" },
+            { "id": "tourbillon", "name": "Tourbillon" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "patek-philippe",
+      "name": "Patek Philippe",
+      "collections": [
+        {
+          "id": "calatrava",
+          "name": "Calatrava",
+          "models": [
+            { "id": "5227g", "name": "5227G" },
+            { "id": "5196g", "name": "5196G" }
+          ]
+        },
+        {
+          "id": "nautilus",
+          "name": "Nautilus",
+          "models": [
+            { "id": "5711", "name": "5711/1A-010" },
+            { "id": "5726a", "name": "5726A" }
+          ]
+        },
+        {
+          "id": "complications",
+          "name": "Complications",
+          "models": [
+            { "id": "5205g", "name": "5205G" },
+            { "id": "5396g", "name": "5396G Annual Calendar" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audemars-piguet",
+      "name": "Audemars Piguet",
+      "collections": [
+        {
+          "id": "royal-oak",
+          "name": "Royal Oak",
+          "models": [
+            { "id": "jumbo", "name": "Extra-Thin Jumbo" },
+            { "id": "chronograph", "name": "Chronograph" },
+            { "id": "offshore", "name": "Offshore" }
+          ]
+        },
+        {
+          "id": "code-11-59",
+          "name": "Code 11.59",
+          "models": [
+            { "id": "automatic", "name": "Automatic" },
+            { "id": "tourbillon", "name": "Tourbillon" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "omega",
+      "name": "Omega",
+      "collections": [
+        {
+          "id": "speedmaster",
+          "name": "Speedmaster",
+          "models": [
+            { "id": "moonwatch", "name": "Professional Moonwatch" },
+            { "id": "racing", "name": "Racing" },
+            { "id": "reduced", "name": "Reduced" }
+          ]
+        },
+        {
+          "id": "seamaster",
+          "name": "Seamaster",
+          "models": [
+            { "id": "diver-300m", "name": "Diver 300M" },
+            { "id": "planet-ocean", "name": "Planet Ocean" }
+          ]
+        },
+        {
+          "id": "constellation",
+          "name": "Constellation",
+          "models": [
+            { "id": "co-axial", "name": "Co-Axial Master" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cartier",
+      "name": "Cartier",
+      "collections": [
+        {
+          "id": "tank",
+          "name": "Tank",
+          "models": [
+            { "id": "must", "name": "Must" },
+            { "id": "solo", "name": "Solo" },
+            { "id": "francaise", "name": "Française" }
+          ]
+        },
+        {
+          "id": "santos",
+          "name": "Santos",
+          "models": [
+            { "id": "medium", "name": "Medium" },
+            { "id": "large", "name": "Large" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "iwc",
+      "name": "IWC Schaffhausen",
+      "collections": [
+        {
+          "id": "pilots-watch",
+          "name": "Pilot's Watch",
+          "models": [
+            { "id": "petit-prince", "name": "Petit Prince" },
+            { "id": "chronograph", "name": "Chronograph 41" },
+            { "id": "top-gun", "name": "Top Gun" }
+          ]
+        },
+        {
+          "id": "portugieser",
+          "name": "Portugieser",
+          "models": [
+            { "id": "automatic", "name": "Automatic 40" },
+            { "id": "chronograph", "name": "Chronograph" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jaeger-lecoultre",
+      "name": "Jaeger-LeCoultre",
+      "collections": [
+        {
+          "id": "reverso",
+          "name": "Reverso",
+          "models": [
+            { "id": "tribute-monoface", "name": "Tribute Monoface" },
+            { "id": "classic-large", "name": "Classic Large" },
+            { "id": "hybris-artistica", "name": "Hybris Artistica" }
+          ]
+        },
+        {
+          "id": "master",
+          "name": "Master",
+          "models": [
+            { "id": "ultra-thin", "name": "Ultra Thin" },
+            { "id": "perpetual", "name": "Perpetual" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tudor",
+      "name": "Tudor",
+      "collections": [
+        {
+          "id": "black-bay",
+          "name": "Black Bay",
+          "models": [
+            { "id": "burgundy", "name": "Burgundy" },
+            { "id": "58", "name": "58" },
+            { "id": "gmt", "name": "GMT" },
+            { "id": "chrono", "name": "Chrono" }
+          ]
+        },
+        {
+          "id": "pelagos",
+          "name": "Pelagos",
+          "models": [
+            { "id": "lhd", "name": "LHD" },
+            { "id": "39", "name": "39" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "grand-seiko",
+      "name": "Grand Seiko",
+      "collections": [
+        {
+          "id": "heritage",
+          "name": "Heritage",
+          "models": [
+            { "id": "snowflake", "name": "Snowflake SBGA211" },
+            { "id": "shizukuishi", "name": "Shizukuishi" }
+          ]
+        },
+        {
+          "id": "evolution-9",
+          "name": "Evolution 9",
+          "models": [
+            { "id": "hi-beat", "name": "Hi-Beat 36000" }
+          ]
+        },
+        {
+          "id": "elegance",
+          "name": "Elegance",
+          "models": [
+            { "id": "slim", "name": "Slim" }
+          ]
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "p1",
+      "sku": "VC-PMO-001",
+      "slug": "vacheron-constantin-patrimony-moon-phase",
+      "brand": "VACHERON CONSTANTIN",
+      "name": "Patrimony Moon Phase",
+      "price": 32500,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCegT7LNqYGF3O3K7cRv86qfdk5DsCHaLqR2bcR8g1bxzE_llNxLzx-H2aiUoVu0hCg5tY6UywCmtf5dhkbIf3wDspMssa6oG9AXT5_BQcZhcrvvns2-3VWJwFp6RLwoOpomRAJVLmbmzmVX3SGF9i5MmCTR3soXsCzW-nsH_c8jkFtiYOBeYSI_ZrYcLyHU6qXWi22kqO9quq3Ob18-aVXXOYAgnGceHxCHlP_XUDsv_uYm3wOQ6F5ChVgkXKFvie-3FfGYzTd1Io",
+      "category": { "brandId": "vacheron-constantin", "collectionId": "patrimony", "modelId": "moon-phase" },
+      "description": "An exquisite expression of haute horlogerie, featuring a captivating moonphase complication in 18k rose gold."
+    },
+    {
+      "id": "p2",
+      "sku": "PP-CAL-001",
+      "slug": "patek-philippe-calatrava-5227g",
+      "brand": "PATEK PHILIPPE",
+      "name": "Calatrava 5227G",
+      "price": 38200,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDXjUg5OTY2FLFlnUdwdhM5XVlFq5UwKEw1qx7TP678avj0xpj0rMvO2KNSYEacPIT8U3BAqssUEassZOBkObC21LupAyBpK6vIWrMVwOuCGAm_CFMoAREvVC1Y5uGNqHL6qujSanVsYDnxiB20Efa5cuNo0MRL4V_xjXYTXkrCpoydyfRqWZzsR2u8eh8yhRyxwaRLSLvilCdmw-ck_L1N-Uk2q-zhtCNjaGUwnPlF0gnj7uvV9s0ugnCZRaMTEhIAIP-hA_NWxxA",
+      "category": { "brandId": "patek-philippe", "collectionId": "calatrava", "modelId": "5227g" },
+      "description": "The quintessential dress watch, refined over generations with its hallmark of understated elegance."
+    },
+    {
+      "id": "p4",
+      "sku": "AP-ROJ-001",
+      "slug": "audemars-piguet-royal-oak-jumbo",
+      "brand": "AUDEMARS PIGUET",
+      "name": "Royal Oak Jumbo",
+      "price": 45000,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDfcw8tuC7IcvwRNcMSYMzgEAWCiP-KxFI0F6z1Wp-a1aprS0WtrqxfPV-oIXq9fnObm2PlBhpFyQ9hvEWBYSKgWYeZz4Xx8DLQaoIenyxgvDVVmJf2SiKetsApZr6wqerfGvzCN2jwd76OfSiuZ7MuGZ8K1NjDjKfTjIWRJNLeuIrpXipxh6d0uzk4-83Nuuv7uTDHFDQNlK9yAp7QRR86eQKFgHD2ZP4RCm9GGl-SYEQVNqzrqxMi40H0PEJ9hpKqS-j3nyIf7w4",
+      "category": { "brandId": "audemars-piguet", "collectionId": "royal-oak", "modelId": "jumbo" },
+      "description": "The original luxury sports watch. The iconic octagonal case in 18k white gold with the legendary tapisserie dial."
+    },
+    {
+      "id": "p5",
+      "sku": "OM-SPM-001",
+      "slug": "omega-speedmaster-moonwatch",
+      "brand": "OMEGA",
+      "name": "Speedmaster Moonwatch",
+      "price": 6400,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD-zKnwiAcI99-jEdYBm9oS9A9JBFPY9j128-juNL9UjmrlM5av46l_guoKtQKZJj1SrXtFBH1zZMTwYEqAvjOaaNzvmsqEi3UNHtBjppQHmWNnvs9PNgwLW5G014pu1-vYaBYPsd-Hj1qqMR2kD7BlClcAI2v3iov19HXf5eeBdbsqZKoM3u1_R6em8QkncuICsw6NP8pRE1D5qVLvM5WU9vQZlNt8f72pfx3umAkvTpTc-npiMIrfBcWHdIPc",
+      "category": { "brandId": "omega", "collectionId": "speedmaster", "modelId": "moonwatch" },
+      "description": "The watch that accompanied man to the moon. A horological legend with the iconic reverse panda dial."
+    },
+    {
+      "id": "p6",
+      "sku": "CT-TMU-001",
+      "slug": "cartier-tank-must-de-cartier",
+      "brand": "CARTIER",
+      "name": "Tank Must de Cartier",
+      "price": 4200,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDLE8jUYYhTjTWAAeevCNRjbyzYvW6zp81zdJC8tCv69bmVecGtXchDm1LjSmgapBxxS9-QXDcl5vs3fNGJ9Eqx_og_DdztFJCRnXQ7owltTpPEQDIzmOmbR3AOlrKr511gPrO046KagsfNc5UkQWn-ILwwFSaU9yyZOk3KGPXNu9FFnWPWFKFW_qCuUiERykZfiU0f5T2ZdIV_Ng8ih0agMkyoRAGdlJWEBAN6iTOhWiLfTCLil7Usy3tPtglKX3C6I5lSBib51yI",
+      "category": { "brandId": "cartier", "collectionId": "tank", "modelId": "must" },
+      "description": "An icon of style since 1917. The Tank's architectural lines remain the benchmark for elegant watches."
+    },
+    {
+      "id": "p7",
+      "sku": "IW-PPP-001",
+      "slug": "iwc-pilots-watch-petit-prince",
+      "brand": "IWC SCHAFFHAUSEN",
+      "name": "Pilot's Watch Petit Prince",
+      "price": 5800,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCwc2oGWsdZPsAGkqafwQnNn47T8uO0vnuZoW4Bjacy87xWj7ywMuS0Boej9PtXZfcp1RKMbtIWpG0TQ2ZxfquDYMTTbV9k3NeTYm2TD3D3qve13AaasbJojnfHuHhsQVcY1Xf_KFkalXVhCvadcRamha7CBTP3bDxjc7pDlJy04mpKuJMNYuBQzVMftJJ3DNnsvouuc4ZgusWe7TxlcmDpsgoaaXrhbys_6Iapf8VwIVJYxAwrXzbs9MowZCQfftKzwkWbeG92TTU",
+      "category": { "brandId": "iwc", "collectionId": "pilots-watch", "modelId": "petit-prince" },
+      "description": "Named for Saint-Exupéry's beloved prince, a pilot's watch in steel with an ethereal blue dial."
+    },
+    {
+      "id": "p8",
+      "sku": "JL-RTM-001",
+      "slug": "jaeger-lecoultre-reverso-tribute-monoface",
+      "brand": "JAEGER-LECOULTRE",
+      "name": "Reverso Tribute Monoface",
+      "price": 9600,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCQD7HMTHquI_--1z4szBWDaN5pH2s-cYCbyHHOzvHGxnHCjL7WiFcXUGEmK8zll8KI-jAZ3ad0NBpody68C-qYE7zouNVJN6IDQ7HJNA4I2II3TxmXrhVuQ_UEhCVn2K_3kNAf2IwnAGnaUFrU3PcG9kAoq6i22UWR-NENENQEA9Y5EiV0eOVsVFWWej6Q2LqX11VOzrKD-UsF0MQUdBI56Hsxzbyt092R93lmCxHTZWBWSas59067YldoB0iIb-Lhz4wwyYV32Dk",
+      "category": { "brandId": "jaeger-lecoultre", "collectionId": "reverso", "modelId": "tribute-monoface" },
+      "description": "The original reversible watch, born on the polo field. A masterpiece of Art Deco elegance."
+    },
+    {
+      "id": "p9",
+      "sku": "TU-BBU-001",
+      "slug": "tudor-black-bay-burgundy",
+      "brand": "TUDOR",
+      "name": "Black Bay Burgundy",
+      "price": 4100,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAlWjKtQmnML55wSQrYrJjOqrQAjXO8l0TB73fBAfnyJUMampSDz-NBobV9cwv8nsA9dY_hJTZEcLcIVMIwIv-Z23Vl1ztevALKPfiUsqZAYEuSjf8Y9CWmS9SP1wcIhKIMNv7sHuDwUYajWUsuFKIUqGUMTahSjW_e0FT9_KMFCIz6bMSYFcuihNEns5x4cDlKYV66vyU9CRhuVmosBIPyWOL7Ax_PDagGJ3LNKMp8a6dkkRiGlpKa8mTjxwVroFn4w0umwyT9O8k",
+      "category": { "brandId": "tudor", "collectionId": "black-bay", "modelId": "burgundy" },
+      "description": "Heritage diving credentials in a collectible burgundy colorway. ISO 6425 certified to 200 metres."
+    },
+    {
+      "id": "p10",
+      "sku": "GS-HSF-001",
+      "slug": "grand-seiko-heritage-snowflake-sbga211",
+      "brand": "GRAND SEIKO",
+      "name": "Heritage Snowflake SBGA211",
+      "price": 6200,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDUyKiGO12Ee49FY-W82ah_mot3fiI_e1YbcDf0T1rMj46_OzSV9GcbVuE_388m8Aiiq4dSdwSoqdv5s5G5Vo1vueiGLwNOURVY6mhgDsAUxI8_DlPEOwFy8gXPjjhlGcCVWd3j7Hcr7UKZeVofJPyH7ADHnGnnDwjPu7iAhgzLpatGYzMp29D7BqbLPL7-dC94YKYtRq8hVXclM3MT80OGY_wn4yV64ingKKdW679jjaugUeJKgh93JTFXalXVuBZpL11E0_q3xCI",
+      "category": { "brandId": "grand-seiko", "collectionId": "heritage", "modelId": "snowflake" },
+      "description": "The legendary Spring Drive movement with a dial mimicking the pristine snowfields of Shinshu."
+    }
+  ],
+  "footer": {
+    "brandName": "HOROLOGICAL EXCELLENCE",
+    "links": [
+      { "id": "f1", "label": "Privacy Policy", "href": "#" },
+      { "id": "f2", "label": "Terms of Service", "href": "#" },
+      { "id": "f3", "label": "Sustainability", "href": "#" },
+      { "id": "f4", "label": "Boutique Locator", "href": "#" },
+      { "id": "f5", "label": "Careers", "href": "#" }
+    ],
+    "copyright": "© 2024 HOROLOGICAL EXCELLENCE. MANUFACTURE EN SUISSE."
+  }
+}

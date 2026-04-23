@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Noto+Serif:wght@300;400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#3c2f00",
+                    "surface-container-high": "#2a2a2a",
+                    "error-container": "#93000a",
+                    "on-surface": "#e5e2e1",
+                    "surface-tint": "#e9c349",
+                    "surface-dim": "#131313",
+                    "primary": "#f2ca50",
+                    "primary-container": "#d4af37",
+                    "outline-variant": "#4d4635",
+                    "surface-container-low": "#1c1b1b",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-error-container": "#ffdad6",
+                    "on-background": "#e5e2e1",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-secondary-fixed-variant": "#474746",
+                    "inverse-primary": "#735c00",
+                    "secondary-container": "#474746",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-bright": "#3a3939",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-variant": "#353534",
+                    "on-error": "#690005",
+                    "tertiary-container": "#b2b3b3",
+                    "on-surface-variant": "#d0c5af",
+                    "error": "#ffb4ab",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-secondary": "#313030",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "secondary": "#c8c6c5",
+                    "on-primary-fixed": "#241a00",
+                    "inverse-on-surface": "#313030",
+                    "background": "#131313",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-container-highest": "#353534",
+                    "on-tertiary": "#2f3131",
+                    "surface-container": "#201f1f",
+                    "on-primary-container": "#554300",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "outline": "#99907c",
+                    "surface": "#131313",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-primary-fixed-variant": "#574500",
+                    "tertiary": "#cecece",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-tertiary-container": "#444546",
+                    "secondary-fixed": "#e5e2e1",
+                    "primary-fixed": "#ffe088"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "container-max": "1440px",
+                    "unit": "8px",
+                    "margin-edge": "64px",
+                    "section-gap": "128px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Noto Serif"],
+                    "label-caps": ["Inter"],
+                    "headline-md": ["Noto Serif"],
+                    "body-lg": ["Inter"],
+                    "headline-display": ["Noto Serif"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.0", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "headline-display": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        body {
+            background-color: #0A0A0A;
+            color: #e5e2e1;
+        }
+    </style>
+</head>
+<body class="font-body-md bg-background">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-white/10 shadow-none ease-in-out duration-300">
+<div class="max-w-[1440px] mx-auto flex justify-between items-center px-12 h-20">
+<!-- Brand Logo -->
+<div class="text-xl font-light tracking-[0.3em] text-[#D4AF37]">HOROLOGICAL EXCELLENCE</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-serif uppercase tracking-[0.2em] text-[11px] text-[#D4AF37] border-b border-[#D4AF37] pb-1 hover:text-white transition-colors duration-500" href="#">Heritage</a>
+<a class="font-serif uppercase tracking-[0.2em] text-[11px] text-gray-400 hover:text-white transition-colors duration-500" href="#">Collections</a>
+<a class="font-serif uppercase tracking-[0.2em] text-[11px] text-gray-400 hover:text-white transition-colors duration-500" href="#">Complications</a>
+<a class="font-serif uppercase tracking-[0.2em] text-[11px] text-gray-400 hover:text-white transition-colors duration-500" href="#">Bespoke</a>
+<a class="font-serif uppercase tracking-[0.2em] text-[11px] text-gray-400 hover:text-white transition-colors duration-500" href="#">Service</a>
+</nav>
+<!-- Trailing Actions & Search -->
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center border-b border-white/20 pb-1 mr-4">
+<span class="material-symbols-outlined text-gray-400 mr-2">search</span>
+<input class="bg-transparent border-none text-[10px] uppercase tracking-widest focus:ring-0 text-white w-40 placeholder:text-gray-600" placeholder="Search Masterpieces" type="text"/>
+</div>
+<button class="text-[#D4AF37] hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button class="text-[#D4AF37] hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="text-[#D4AF37] hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[921px] w-full overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 z-0">
+<img alt="Hero Watch" class="w-full h-full object-cover opacity-60" data-alt="Macro close-up of a luxury gold watch movement with intricate gears and rubies, dark moody lighting with golden highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo4r2_nOlvLyUYR78UCo-5gnURHuFH6W7_IN62TozeHNnXriEATlWYBQMiOFPzW45e1s9wRD1xB44GqC-A7IjpuCU0Vx04edqzCfsS3M3bP5vcxojq6fkmK6AU-jpLD3pesd9F64NKgTZH-2lacDzCycxM_iQO3VHSAMA9FkW517Lu9PXqnVXqsYPIAfef_w4ZDMqYkMDGzMrjvBXAfcQ3MVM8SkouCFZcSymLW7NPs3fV633X63xUEJLtoqsC4RnlsHak__gWyt4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 text-center px-6">
+<p class="font-label-caps text-primary tracking-[0.4em] mb-6">ESTABLISHED 1892</p>
+<h1 class="font-headline-display text-white mb-8">TIMELess PRECISION</h1>
+<p class="font-body-lg text-secondary max-w-xl mx-auto mb-12 opacity-80">Experience the apex of Swiss engineering and artisanal craftsmanship. A legacy forged in gold and steel.</p>
+<div class="flex flex-col md:flex-row gap-6 justify-center">
+<button class="px-10 py-4 bg-primary text-on-primary font-label-caps hover:bg-primary-fixed transition-colors">DISCOVER THE COLLECTION</button>
+<button class="px-10 py-4 border border-white/20 text-white font-label-caps hover:bg-white/5 transition-colors">OUR HERITAGE</button>
+</div>
+</div>
+</section>
+<!-- Bento Grid Section -->
+<section class="max-w-[1440px] mx-auto px-12 py-32">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 h-[700px]">
+<!-- Modern Classics (Large) -->
+<div class="md:col-span-2 md:row-span-2 group relative overflow-hidden bg-surface-container-low">
+<img alt="Modern Classics" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" data-alt="Sleek silver minimalist watch on a dark gray marble surface with sharp shadows and high contrast lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuG3B9V0praS4HDK-BIzpl7RvOquKgAg86tN3uoHeETVKeJe4EkdLLOBSNOKJpgolM5sji0SRcn1qCSovdFrzUaX9qBcA7WD0xWpm_RJQChlqpOBOiZOolgNPdViXlHCXV4TA-rtWPz_8-UN1HJetErlkKReafxSL6d4wtQ7uGCeqhV_JALIsn_eVJN2FYkRtZZXLCyiPQuEC7DD1ZEPp5PD9WIPGr6aOFAh8ZgTyZRNOQ9Z4XRSq4dqtg_dKUJN7SumX2T2tYwHw"/>
+<div class="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent">
+<h3 class="font-headline-lg text-white mb-2">Modern Classics</h3>
+<p class="font-body-md text-secondary mb-6 max-w-xs">Refined simplicity for the contemporary gentleman.</p>
+<a class="font-label-caps text-primary border-b border-primary w-fit pb-1" href="#">EXPLORE SERIES</a>
+</div>
+</div>
+<!-- Limited Editions -->
+<div class="md:col-span-2 group relative overflow-hidden bg-surface-container-low">
+<img alt="Limited Editions" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" data-alt="Top view of an open luxury watch box showing a rare black dial chronograph with leather straps" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN5VxuE9T7ZnBegqcETi4_PD1Z-xJXXLvHKULQZRLVopmBi6bhv-gSfY8JzmJPLXIloZenFFhRsgczqoL_bm2w9Slmzn14n27iZFuqut9mjzPLEvCyrhWfqn7dzH-ckEHdzWQ9RNPDqsSb3Pq2f0KvpyRl4B9LLBNJK4WJP9BC8jLT_Uf8XPOTDm4qW7ZXQWpKPDMbcR5HK9g81yYjPgCwb5mZY-cEdeic3lcXRlL8-gPfyS0FB41wBy3rbY5faiKvw-c91sX6VtU"/>
+<div class="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent">
+<h3 class="font-headline-md text-white mb-2">Limited Editions</h3>
+<a class="font-label-caps text-primary border-b border-primary w-fit pb-1" href="#">VIEW RARITIES</a>
+</div>
+</div>
+<!-- Heritage -->
+<div class="md:col-span-2 group relative overflow-hidden bg-surface-container-low">
+<img alt="Heritage" class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700" data-alt="Close up of a vintage pocket watch mechanism with gold gears and delicate engraving on a velvet background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBprbIDwucKuPwC-_BsQX3Pedleunf6f8OM1psIvF4L6UrxeKjVn3T6Hah6wspBskM6IJ9njhjy1xfV4W8SoLHEiqzEzB4BPXWdeQn1kpEQfXNYRLOPTk9-1WuTK8uc9ekTmJLBx9STeK_KCNyzMD_6nehizm6HzKdoFJ62YwWUH1zciMtiiVI5Yxknk-JuNmQuk3qKV21t1l0yHeH9blJvHA9MwMqwFISOOz_1LZhq2fnXeK8ijoaYTMut1YXHROe12XaZ5WXyekk"/>
+<div class="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent">
+<h3 class="font-headline-md text-white mb-2">Heritage</h3>
+<a class="font-label-caps text-primary border-b border-primary w-fit pb-1" href="#">OUR STORY</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Shop by Category -->
+<section class="bg-surface-container-lowest py-32 overflow-hidden">
+<div class="max-w-[1440px] mx-auto px-12">
+<div class="flex justify-between items-end mb-16">
+<div>
+<p class="font-label-caps text-primary mb-4">CURATED SELECTIONS</p>
+<h2 class="font-headline-lg text-white">SHOP BY CATEGORY</h2>
+</div>
+<div class="flex gap-4">
+<button class="p-4 border border-white/10 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-white">arrow_back</span>
+</button>
+<button class="p-4 border border-white/10 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-white">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="flex gap-12 overflow-x-auto pb-8 no-scrollbar">
+<!-- Category: Dress -->
+<div class="flex-none w-64 text-center group cursor-pointer">
+<div class="w-64 h-80 mb-6 overflow-hidden bg-surface-container-high flex items-center justify-center p-8">
+<img alt="Dress" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="Elegant thin gold watch with white dial and black leather strap on a silk cloth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-7mDR2K929_IjVXzhwCAI1IPWjiGYcNKRGqHDmRpaCac1AHnlsaoET8iY1sNNtySWMyM0IByybnIg88xkS1KWRx6zRICvj39xF4JdJ14l_0Ue-SG9y9gSxk2BUD_rw0jEployxXlwPaPrY6q0eC-Y0--zR__O8qelErjli-l8_-9Woy1DlyJM7cA_z0GWZcMIGBRaCKDxFiFqlDWgF3fXHwwp1YKg4x-w-lmtRBlEtci2miX8hSKyYKTbD7bE0Nq0KnRS4D7WWO4"/>
+</div>
+<h4 class="font-label-caps text-white text-[14px]">DRESS</h4>
+</div>
+<!-- Category: Sport -->
+<div class="flex-none w-64 text-center group cursor-pointer">
+<div class="w-64 h-80 mb-6 overflow-hidden bg-surface-container-high flex items-center justify-center p-8">
+<img alt="Sport" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="Robust steel chronograph watch with tachymeter bezel on a professional athlete's wrist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqE24e0Td9pdtLdjgdRUa95MEPzseH5MWH1pmsaiw_r0gbjscfwNXpbuhvckOuvryJKhLBoBrx2ObNnk379X209G_nR2gGIJNDP9yYlWWr8Hpxeezn2B8HfnnZOCoXTPjLz6iinolFAq2tGx9LjaTWc_CNISAyBBwRVM_ZLnKDXpE8xuNHKja0bW9i1Wo5SxJ2LZynN-fEtefFpq1oEX0ugwh8PcSH9fiTH4rzaVMjSOnoLo9RAc11n1WR-sBQC9-WqJFEsxVoEAY"/>
+</div>
+<h4 class="font-label-caps text-white text-[14px]">SPORT</h4>
+</div>
+<!-- Category: Diver -->
+<div class="flex-none w-64 text-center group cursor-pointer">
+<div class="w-64 h-80 mb-6 overflow-hidden bg-surface-container-high flex items-center justify-center p-8">
+<img alt="Diver" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="Rugged diver watch with luminous dial and rotating bezel, partially submerged in clear blue water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXZAtuQPbbCvQTyFR7w1WArApaG8pJMCYMDxmfJhLLgE_tmRq6pb9NeyRPAF__uE6cLABVWj4Eic35X0mPoRmmF_agXqI7_OKhWmZdAceOrraDL2f4mUaZRSDW-g-1bWZQkWaOYlnSMEXnYAzN95MsuzDpN_CDFXsgw5cKsmVsYo95lBTwYFSaa0N1M4tuxD9z--dCq3kAH6363XdqCt1iFeNM0nN-2MrPHCrR8O8xPyimmo_oar9QN0XK3fLJPxDnniEIwfyhRig"/>
+</div>
+<h4 class="font-label-caps text-white text-[14px]">DIVER</h4>
+</div>
+<!-- Category: Aviator -->
+<div class="flex-none w-64 text-center group cursor-pointer">
+<div class="w-64 h-80 mb-6 overflow-hidden bg-surface-container-high flex items-center justify-center p-8">
+<img alt="Aviator" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="Large dial pilot watch with clear numerals and thick brown leather strap against a cockpit background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOKCenlF0nSH1rV-dikdi9LokRDMKPa46-VFooQl5o64UJHYzdKMBXLJ9LJ9ZJgw4IiHDg7aOC9j_NAXH0IgPH7nW3HZUrDhtTYnx_WgSQMRUtVG1h4u8rF7rzC7c0jXKojPDpvg10_Ul0RDjjAuu6EKCUB_4kVyPrUmJNGbFrHGesRlOICRNOe6m4Z4b5GqYgBcJo6CPIpixbGLjsm1yDwDX5jczlsyCjn4pDeUdpIyvoYS54_LninQ3R5gSAZJLICLujM4Qxc7A"/>
+</div>
+<h4 class="font-label-caps text-white text-[14px]">AVIATOR</h4>
+</div>
+<!-- Category: Digital -->
+<div class="flex-none w-64 text-center group cursor-pointer">
+<div class="w-64 h-80 mb-6 overflow-hidden bg-surface-container-high flex items-center justify-center p-8">
+<img alt="Digital" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="Premium digital watch with metallic case and high-resolution screen showing complex metrics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmvmSiaKul2rWxbPsFpDjcVglLTHKFXZgsl0bnU6KxNJ58Zysp4gL_8jL3hLS6E-dgLl_UXOCzzyM1UyeRQVy3s83zow09D1we0ZRffiHz6qOgNzcAl0colATq2wbp3RVw5Vli25ZphhU-IKXtXGMJBhpuoTGTCY3ZMHEY74JOgcpj1U_L0ggl7IsKabZNX-Sdab73pN295Yl7WsgG5EYVul_FwAihsBzeplHo1bQD2KPwjR_QFjFRl5hHU8vmZLjR01cjn81dmag"/>
+</div>
+<h4 class="font-label-caps text-white text-[14px]">DIGITAL</h4>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Product Grid -->
+<section class="max-w-[1440px] mx-auto px-12 py-32">
+<div class="mb-16">
+<h2 class="font-headline-lg text-white text-center">THE CURATED COLLECTION</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-16 gap-x-6">
+<!-- Product 1 -->
+<div class="group">
+<div class="relative overflow-hidden bg-surface-container-low h-[350px] mb-6 border border-white/5 group-hover:border-primary/20 transition-all duration-300">
+<img alt="Vacheron" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Luxury dress watch with rose gold case and white dial showing moonphase complication" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCegT7LNqYGF3O3K7cRv86qfdk5DsCHaLqR2bcR8g1bxzE_llNxLzx-H2aiUoVu0hCg5tY6UywCmtf5dhkbIf3wDspMssa6oG9AXT5_BQcZhcrvvns2-3VWJwFp6RLwoOpomRAJVLmbmzmVX3SGF9i5MmCTR3soXsCzW-nsH_c8jkFtiYOBeYSI_ZrYcLyHU6qXWi22kqO9quq3Ob18-aVXXOYAgnGceHxCHlP_XUDsv_uYm3wOQ6F5ChVgkXKFvie-3FfGYzTd1Io"/>
+<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-on-primary font-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">ADD TO COLLECTION</button>
+</div>
+<p class="font-label-caps text-primary text-[10px] mb-1">VACHERON CONSTANTIN</p>
+<h5 class="font-body-md text-white mb-2">Patrimony Moon Phase</h5>
+<p class="font-label-md text-secondary">$32,500</p>
+</div>
+<!-- Product 2 -->
+<div class="group">
+<div class="relative overflow-hidden bg-surface-container-low h-[350px] mb-6 border border-white/5 group-hover:border-primary/20 transition-all duration-300">
+<img alt="Patek" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Classic luxury watch with silver dial and blue steel hands, elegant minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXjUg5OTY2FLFlnUdwdhM5XVlFq5UwKEw1qx7TP678avj0xpj0rMvO2KNSYEacPIT8U3BAqssUEassZOBkObC21LupAyBpK6vIWrMVwOuCGAm_CFMoAREvVC1Y5uGNqHL6qujSanVsYDnxiB20Efa5cuNo0MRL4V_xjXYTXkrCpoydyfRqWZzsR2u8eh8yhRyxwaRLSLvilCdmw-ck_L1N-Uk2q-zhtCNjaGUwnPlF0gnj7uvV9s0ugnCZRaMTEhIAIP-hA_NWxxA"/>
+<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-on-primary font-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">ADD TO COLLECTION</button>
+</div>
+<p class="font-label-caps text-primary text-[10px] mb-1">PATEK PHILIPPE</p>
+<h5 class="font-body-md text-white mb-2">Calatrava 5227G</h5>
+<p class="font-label-md text-secondary">$38,200</p>
+</div>
+<!-- Product 3 -->
+<div class="group">
+<div class="relative overflow-hidden bg-surface-container-low h-[350px] mb-6 border border-white/5 group-hover:border-primary/20 transition-all duration-300">
+<img alt="Rolex" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Gold and steel professional diver watch with black ceramic bezel and oyster bracelet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4fOmOZNPuwSUEQJsooknHG2dYnSkEFndapt483jX62xkWJqdUnoCmLuRxwxYitz50xi_5Tut2tdv0Pex7q79J_E8nAIh4uBYwZz2ID8FtTnX4RP66BrtSoF9n87UHr9SmEBMGYjT_31_g8MS6VLOTmPYmZmFGem49yzMHsS0Y4VnfLmwydQ_RYSqD-0cjG6grH4MGum8KK_ozj-pxA9LO_mBzR81sHshbXcAMVl_3w56bfdEAHC2WO7GpYKkYxR2hc7bYaEyT9Tc"/>
+<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-on-primary font-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">ADD TO COLLECTION</button>
+</div>
+<p class="font-label-caps text-primary text-[10px] mb-1">ROLEX</p>
+<h5 class="font-body-md text-white mb-2">Submariner Date</h5>
+<p class="font-label-md text-secondary">$14,500</p>
+</div>
+<!-- Product 4 -->
+<div class="group">
+<div class="relative overflow-hidden bg-surface-container-low h-[350px] mb-6 border border-white/5 group-hover:border-primary/20 transition-all duration-300">
+<img alt="Audemars" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Iconic octagonal steel sports watch with blue tapisserie dial" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfcw8tuC7IcvwRNcMSYMzgEAWCiP-KxFI0F6z1Wp-a1aprS0WtrqxfPV-oIXq9fnObm2PlBhpFyQ9hvEWBYSKgWYeZz4Xx8DLQaoIenyxgvDVVmJf2SiKetsApZr6wqerfGvzCN2jwd76OfSiuZ7MuGZ8K1NjDjKfTjIWRJNLeuIrpXipxh6d0uzk4-83Nuuv7uTDHFDQNlK9yAp7QRR86eQKFgHD2ZP4RCm9GGl-SYEQVNqzrqxMi40H0PEJ9hpKqS-j3nyIf7w4"/>
+<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-on-primary font-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">ADD TO COLLECTION</button>
+</div>
+<p class="font-label-caps text-primary text-[10px] mb-1">AUDEMARS PIGUET</p>
+<h5 class="font-body-md text-white mb-2">Royal Oak Jumbo</h5>
+<p class="font-label-md text-secondary">$45,000</p>
+</div>
+<!-- Product 5 -->
+<div class="group">
+<div class="relative overflow-hidden bg-surface-container-low h-[350px] mb-6 border border-white/5 group-hover:border-primary/20 transition-all duration-300">
+<img alt="Omega" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Classic moon watch chronograph with black dial and white hands on steel bracelet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-zKnwiAcI99-jEdYBm9oS9A9JBFPY9j128-juNL9UjmrlM5av46l_guoKtQKZJj1SrXtFSJKGIxsE3n6mdDFBH1zZMTwYEqAvjOaaNzvmsqEi3UNHtBjppQHmWNnvs9PNgwLW5G014pu1-vYaBYPsd-Hj1qqMR2kD7BlClcAI2v3iov19HXf5eeBdbsqZKoM3u1_R6em8QkncuICsw6NP8pRE1D5qVLvM5WU9vQZlNt8f72pfx3umAkvTpTc-npiMIrfBcWHdIPc"/>
+<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-on-primary font-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">ADD TO COLLECTION</button>
+</div>
+<p class="font-label-caps text-primary text-[10px] mb-1">OMEGA</p>
+<h5 class="font-body-md text-white mb-2">Speedmaster Moonwatch</h5>
+<p class="font-label-md text-secondary">$6,400</p>
+</div>
+<!-- Product 6 -->
+<div class="group">
+<div class="relative overflow-hidden bg-surface-container-low h-[350px] mb-6 border border-white/5 group-hover:border-primary/20 transition-all duration-300">
+<img alt="Cartier" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Classic rectangular watch with blue hands and black leather strap, vintage aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLE8jUYYhTjTWAAeevCNRjbyzYvW6zp81zdJC8tCv69bmVecGtXchDm1LjSmgapBxxS9-QXDcl5vs3fNGJ9Eqx_og_DdztFJCRnXQ7owltTpPEQDIzmOmbR3AOlrKr511gPrO046KagsfNc5UkQWn-ILwwFSaU9yyZOk3KGPXNu9FFnWPWFKFW_qCuUiERykZfiU0f5T2ZdIV_Ng8ih0agMkyoRAGdlJWEBAN6iTOhWiLfTCLil7Usy3tPtglKX3C6I5lSBib51yI"/>
+<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-on-primary font-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">ADD TO COLLECTION</button>
+</div>
+<p class="font-label-caps text-primary text-[10px] mb-1">CARTIER</p>
+<h5 class="font-body-md text-white mb-2">Tank Must de Cartier</h5>
+<p class="font-label-md text-secondary">$4,200</p>
+</div>
+<!-- Product 7 -->
+<div class="group">
+<div class="relative overflow-hidden bg-surface-container-low h-[350px] mb-6 border border-white/5 group-hover:border-primary/20 transition-all duration-300">
+<img alt="IWC" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Dark blue dial pilot's chronograph with brown leather strap" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwc2oGWsdZPsAGkqafwQnNn47T8uO0vnuZoW4Bjacy87xWj7ywMuS0Boej9PtXZfcp1RKMbtIWpG0TQ2ZxfquDYMTTbV9k3NeTYm2TD3D3qve13AaasbJojnfHuHhsQVcY1Xf_KFkalXVhCvadcRamha7CBTP3bDxjc7pDlJy04mpKuJMNYuBQzVMftJJ3DNnsvouuc4ZgusWe7TxlcmDpsgoaaXrhbys_6Iapf8VwIVJYxAwrXzbs9MowZCQfftKzwkWbeG92TTU"/>
+<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-on-primary font-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">ADD TO COLLECTION</button>
+</div>
+<p class="font-label-caps text-primary text-[10px] mb-1">IWC SCHAFFHAUSEN</p>
+<h5 class="font-body-md text-white mb-2">Pilot's Watch 'Petit Prince'</h5>
+<p class="font-label-md text-secondary">$5,800</p>
+</div>
+<!-- Product 8 -->
+<div class="group">
+<div class="relative overflow-hidden bg-surface-container-low h-[350px] mb-6 border border-white/5 group-hover:border-primary/20 transition-all duration-300">
+<img alt="Jaeger" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High-end reversible watch with two dials, steel case and brown ostrich leather strap" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQD7HMTHquI_--1z4szBWDaN5pH2s-cYCbyHHOzvHGxnHCjL7WiFcXUGEmK8zll8KI-jAZ3ad0NBpody68C-qYE7zouNVJN6IDQ7HJNA4I2II3TxmXrhVuQ_UEhCVn2K_3kNAf2IwnAGnaUFrU3PcG9kAoq6i22UWR-NENENQEA9Y5EiV0eOVsVFWWej6Q2LqX11VOzrKD-UsF0MQUdBI56Hsxzbyt092R93lmCxHTZWBWSas59067YldoB0iIb-Lhz4wwyYV32Dk"/>
+<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-on-primary font-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">ADD TO COLLECTION</button>
+</div>
+<p class="font-label-caps text-primary text-[10px] mb-1">JAEGER-LECOULTRE</p>
+<h5 class="font-body-md text-white mb-2">Reverso Tribute Monoface</h5>
+<p class="font-label-md text-secondary">$9,600</p>
+</div>
+<!-- Product 9 -->
+<div class="group">
+<div class="relative overflow-hidden bg-surface-container-low h-[350px] mb-6 border border-white/5 group-hover:border-primary/20 transition-all duration-300">
+<img alt="Tudor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Rugged divers watch with burgundy bezel and black dial on steel bracelet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlWjKtQmnML55wSQrYrJjOqrQAjXO8l0TB73fBAfnyJUMampSDz-NBobV9cwv8nsA9dY_hJTZEcLcIVMIwIv-Z23Vl1ztevALKPfiUsqZAYEuSjf8Y9CWmS9SP1wcIhKIMNv7sHuDwUYajWUsuFKIUqGUMTahSjW_e0FT9_KMFCIz6bMSYFcuihNEns5x4cDlKYV66vyU9CRhuVmosBIPyWOL7Ax_PDagGJ3LNKMp8a6dkkRiGlpKa8mTjxwVroFn4w0umwyT9O8k"/>
+<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-on-primary font-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">ADD TO COLLECTION</button>
+</div>
+<p class="font-label-caps text-primary text-[10px] mb-1">TUDOR</p>
+<h5 class="font-body-md text-white mb-2">Black Bay Burgundy</h5>
+<p class="font-label-md text-secondary">$4,100</p>
+</div>
+<!-- Product 10 -->
+<div class="group">
+<div class="relative overflow-hidden bg-surface-container-low h-[350px] mb-6 border border-white/5 group-hover:border-primary/20 transition-all duration-300">
+<img alt="Grand Seiko" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High precision silver watch with textured white dial inspired by snowflake patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUyKiGO12Ee49FY-W82ah_mot3fiI_e1YbcDf0T1rMj46_OzSV9GcbVuE_388m8Aiiq4dSdwSoqdv5s5G5Vo1vueiGLwNOURVY6mhgDsAUxI8_DlPEOwFy8gXPjjhlGcCVWd3j7Hcr7UKZeVofJPyH7ADHnGnnDwjPu7iAhgzLpatGYzMp29D7BqbLPL7-dC94YKYtRq8hVXclM3MT80OGY_wn4yV64ingKKdW679jjaugUeJKgh93JTFXalXVuBZpL11E0_q3xCI"/>
+<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-on-primary font-label-caps opacity-0 group-hover:opacity-100 transition-opacity duration-300">ADD TO COLLECTION</button>
+</div>
+<p class="font-label-caps text-primary text-[10px] mb-1">GRAND SEIKO</p>
+<h5 class="font-body-md text-white mb-2">Heritage 'Snowflake' SBGA211</h5>
+<p class="font-label-md text-secondary">$6,200</p>
+</div>
+</div>
+<div class="mt-20 text-center">
+<button class="px-12 py-5 border border-[#D4AF37] text-[#D4AF37] font-label-caps hover:bg-[#D4AF37]/10 transition-all duration-500 uppercase tracking-[0.2em]">View All Masterpieces</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0A0A0A] w-full border-t border-white/5 border-t border-zinc-900 transition-all duration-300">
+<div class="max-w-[1440px] mx-auto px-12 py-16 flex flex-col items-center gap-8">
+<div class="text-lg font-bold text-white tracking-[0.4em] uppercase">HOROLOGICAL EXCELLENCE</div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-16">
+<a class="font-serif uppercase tracking-widest text-[9px] text-zinc-600 hover:text-[#D4AF37] transition-all" href="#">Privacy Policy</a>
+<a class="font-serif uppercase tracking-widest text-[9px] text-zinc-600 hover:text-[#D4AF37] transition-all" href="#">Terms of Service</a>
+<a class="font-serif uppercase tracking-widest text-[9px] text-zinc-600 hover:text-[#D4AF37] transition-all" href="#">Sustainability</a>
+<a class="font-serif uppercase tracking-widest text-[9px] text-zinc-600 hover:text-[#D4AF37] transition-all" href="#">Boutique Locator</a>
+<a class="font-serif uppercase tracking-widest text-[9px] text-zinc-600 hover:text-[#D4AF37] transition-all" href="#">Careers</a>
+</div>
+<div class="w-full h-px bg-white/5 my-4"></div>
+<div class="flex flex-col items-center gap-6">
+<div class="flex gap-8">
+<a class="text-zinc-600 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="text-zinc-600 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+<a class="text-zinc-600 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">call</span>
+</a>
+</div>
+<p class="font-serif uppercase tracking-widest text-[9px] text-zinc-600">© 2024 HOROLOGICAL EXCELLENCE. MANUFACTURE EN SUISSE.</p>
+</div>
+</div>
+</footer>
+</body></html>
