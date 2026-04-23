@@ -195,12 +195,12 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
                 className={`tabular-nums font-light ${hasOffer ? 'text-[#D4AF37]' : 'text-white'}`}
                 style={{ fontSize: 'clamp(22px, 2.5vw, 30px)' }}
               >
-                ${displayPrice.toLocaleString()}
+                ₲{displayPrice.toLocaleString('es-PY')}
               </span>
               {hasOffer && (
                 <>
                   <span className="text-white/30 text-lg tabular-nums line-through font-light">
-                    ${product.price.toLocaleString()}
+                    ₲{product.price.toLocaleString('es-PY')}
                   </span>
                   <span className="font-label-caps text-[9px] tracking-[0.15em] text-[#D4AF37] bg-[#D4AF37]/10 px-2 py-1">
                     −{discount}%
@@ -243,7 +243,7 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
                 <span className="material-symbols-outlined" style={{ fontSize: 16 }}>
                   {added ? 'check' : 'shopping_bag'}
                 </span>
-                {added ? 'AÑADIDO AL CARRITO' : 'ADD TO COLLECTION'}
+                {added ? 'AÑADIDO AL CARRITO' : 'AÑADIR A LA COLECCIÓN'}
               </button>
 
               <button
@@ -300,11 +300,11 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
                     <h3 className="text-white/80 text-[12px] font-light leading-snug mb-1.5">{rec.name}</h3>
                     <div className="flex items-baseline gap-2">
                       <span className={`text-sm tabular-nums font-light ${recOffer ? 'text-[#D4AF37]' : 'text-white/40'}`}>
-                        ${recPrice.toLocaleString()}
+                        ₲{recPrice.toLocaleString('es-PY')}
                       </span>
                       {recOffer && (
                         <span className="text-white/20 text-xs tabular-nums line-through font-light">
-                          ${rec.price.toLocaleString()}
+                          ₲{rec.price.toLocaleString('es-PY')}
                         </span>
                       )}
                     </div>

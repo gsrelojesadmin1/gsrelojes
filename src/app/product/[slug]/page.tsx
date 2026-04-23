@@ -12,12 +12,13 @@ function getSiteData(): SiteData {
 }
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
-export default function ProductPage({ params }: Props) {
+export default async function ProductPage({ params }: Props) {
+  const { slug } = await params
   const data = getSiteData()
-  const product = data.products.find(p => p.slug === params.slug)
+  const product = data.products.find(p => p.slug === slug)
 
   if (!product) notFound()
 

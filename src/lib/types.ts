@@ -4,7 +4,8 @@ export interface NavLink {
   href: string
 }
 
-export interface HeroData {
+export interface HeroSlide {
+  id: string
   badge: string
   title: string
   subtitle: string
@@ -12,6 +13,9 @@ export interface HeroData {
   cta2Label: string
   backgroundImage: string
 }
+
+/** @deprecated usa heroSlides[] */
+export type HeroData = HeroSlide
 
 export interface NavbarData {
   brandName: string
@@ -55,6 +59,7 @@ export interface Product {
   salePrice?: number
   image: string
   images?: string[]
+  tags?: string[]
   category: ProductCategory
   description: string
 }
@@ -65,9 +70,37 @@ export interface FooterData {
   copyright: string
 }
 
+export interface BentoItem {
+  id: string
+  title: string
+  description?: string
+  linkLabel: string
+  src: string
+  large: boolean
+}
+
+export interface FeatureBadge {
+  id: string
+  icon: string
+  title: string
+  description: string
+}
+
+export interface BrandShortcut {
+  id: string
+  name: string
+  image: string
+  link: string
+}
+
 export interface SiteData {
   navbar: NavbarData
-  hero: HeroData
+  announcements?: string[]
+  hero: HeroSlide
+  heroSlides: HeroSlide[]
+  bentoItems: BentoItem[]
+  featureBadges?: FeatureBadge[]
+  brandShortcuts?: BrandShortcut[]
   products: Product[]
   watchBrands: WatchBrand[]
   footer: FooterData

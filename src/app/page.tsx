@@ -4,7 +4,8 @@ import type { SiteData } from '@/lib/types'
 import Header from '@/components/Header'
 import HeroSection from '@/components/HeroSection'
 import BentoGrid from '@/components/BentoGrid'
-import CategoryCarousel from '@/components/CategoryCarousel'
+import FeatureBadges from '@/components/FeatureBadges'
+import BrandShortcuts from '@/components/BrandShortcuts'
 import ProductGrid from '@/components/ProductGrid'
 import Footer from '@/components/Footer'
 
@@ -20,12 +21,17 @@ export default function Home() {
 
   return (
     <>
-      <Header navbar={data.navbar} />
-      <main className="pt-20">
-        <HeroSection hero={data.hero} />
-        <BentoGrid />
-        <CategoryCarousel />
+      <Header navbar={data.navbar} announcements={data.announcements} />
+      <main className="pt-28">
+        <HeroSection slides={data.heroSlides ?? [data.hero]} />
+        
+        {/* Nuevas secciones de confianza y atajos */}
+        <FeatureBadges badges={data.featureBadges} />
+        <BrandShortcuts shortcuts={data.brandShortcuts} />
+        
         <ProductGrid products={data.products} />
+        
+        <BentoGrid items={data.bentoItems ?? []} />
       </main>
       <Footer footer={data.footer} />
     </>
