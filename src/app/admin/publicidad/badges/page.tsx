@@ -50,8 +50,8 @@ export default function BadgesAdminPage() {
   if (!data) return <div className="p-8 text-white/50 font-label-caps text-[10px]">Cargando...</div>
 
   return (
-    <div className="p-8 lg:p-12 max-w-5xl">
-      <div className="flex items-center justify-between mb-12">
+    <div className="p-4 lg:p-12 max-w-5xl">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-12">
         <div>
           <h1 className="font-label-caps text-[14px] tracking-[0.3em] text-[#D4AF37] mb-2">BADGES DE CONFIANZA</h1>
           <p className="text-white/40 text-[11px] font-light">Edita los iconos y textos de los beneficios</p>

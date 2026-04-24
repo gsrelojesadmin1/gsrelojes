@@ -67,13 +67,13 @@ export default function ShortcutsAdminPage() {
   if (!data) return <div className="p-8 text-white/50 font-label-caps text-[10px]">Cargando...</div>
 
   return (
-    <div className="p-8 lg:p-12 max-w-5xl">
-      <div className="flex items-center justify-between mb-12">
+    <div className="p-4 lg:p-12 max-w-5xl">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-12">
         <div>
           <h1 className="font-label-caps text-[14px] tracking-[0.3em] text-[#D4AF37] mb-2">ATAJOS DE MARCAS</h1>
           <p className="text-white/40 text-[11px] font-light">Gestiona las colecciones exclusivas de la portada</p>
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-3">
           <button
             onClick={addShortcut}
             className="border border-[#D4AF37]/30 text-[#D4AF37] font-label-caps text-[10px] tracking-[0.2em] px-6 py-3 hover:bg-[#D4AF37]/10 transition-colors"

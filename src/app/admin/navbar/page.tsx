@@ -89,10 +89,10 @@ export default function AdminNavbarPage() {
     setSaved(false)
   }
 
-  if (!data) return <div className="p-10 text-white/30 text-sm">Cargando...</div>
+  if (!data) return <div className="p-4 text-white/30 text-sm">Cargando...</div>
 
   return (
-    <div className="p-10 max-w-2xl">
+    <div className="p-4 md:p-10 max-w-2xl">
       <div className="mb-10">
         <p className="font-label-caps text-[10px] tracking-[0.25em] text-[#D4AF37] mb-3">ADMIN / NAVBAR</p>
         <h1 className="text-white text-2xl font-light">Navegación</h1>
@@ -126,9 +126,9 @@ export default function AdminNavbarPage() {
 
         <div className="space-y-2">
           {data.navbar.links.map((link, idx) => (
-            <div key={link.id} className="flex items-center gap-2 bg-[#111] border border-white/8 p-4">
+            <div key={link.id} className="flex items-center gap-2 bg-[#111] border border-white/8 p-3 sm:p-4">
               {/* Order */}
-              <div className="flex flex-col gap-0.5">
+              <div className="flex flex-col gap-0.5 flex-none">
                 <button
                   onClick={() => moveLink(link.id, -1)}
                   disabled={idx === 0}
@@ -147,28 +147,28 @@ export default function AdminNavbarPage() {
                 </button>
               </div>
 
-              {/* Label */}
-              <input
-                type="text"
-                value={link.label}
-                onChange={e => updateLink(link.id, 'label', e.target.value)}
-                placeholder="Label"
-                className="flex-1 bg-[#0e0e0e] border border-white/10 text-white text-sm px-3 py-2 focus:border-[#D4AF37]/40 transition-colors font-light"
-              />
-
-              {/* Href */}
-              <input
-                type="text"
-                value={link.href}
-                onChange={e => updateLink(link.id, 'href', e.target.value)}
-                placeholder="/ruta o #seccion"
-                className="flex-1 bg-[#0e0e0e] border border-white/10 text-white/60 text-sm px-3 py-2 focus:border-[#D4AF37]/40 transition-colors font-light"
-              />
+              {/* Inputs */}
+              <div className="flex flex-col sm:flex-row gap-2 flex-1 min-w-0">
+                <input
+                  type="text"
+                  value={link.label}
+                  onChange={e => updateLink(link.id, 'label', e.target.value)}
+                  placeholder="Label"
+                  className="flex-1 min-w-0 bg-[#0e0e0e] border border-white/10 text-white text-sm px-3 py-2 focus:border-[#D4AF37]/40 transition-colors font-light"
+                />
+                <input
+                  type="text"
+                  value={link.href}
+                  onChange={e => updateLink(link.id, 'href', e.target.value)}
+                  placeholder="/ruta o #seccion"
+                  className="flex-1 min-w-0 bg-[#0e0e0e] border border-white/10 text-white/60 text-sm px-3 py-2 focus:border-[#D4AF37]/40 transition-colors font-light"
+                />
+              </div>
 
               {/* Delete */}
               <button
                 onClick={() => removeLink(link.id)}
-                className="text-white/20 hover:text-red-400 transition-colors p-1"
+                className="text-white/20 hover:text-red-400 transition-colors p-1 flex-none"
                 aria-label="Remove link"
               >
                 <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>

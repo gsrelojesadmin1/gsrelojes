@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import ImageUploader from '@/components/admin/ImageUploader'
 import { generateSku, generateSlug } from '@/lib/utils'
@@ -31,9 +31,15 @@ export default function AdminProductsPage() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [form, setForm] = useState<Omit<Product, 'id'>>(emptyForm())
   const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [expandedBrands, setExpandedBrands] = useState<Set<string>>(new Set())
+  const [expandedCollections, setExpandedCollections] = useState<Set<string>>(new Set())
 
   useEffect(() => {
-    fetch('/api/data').then(r => r.json()).then(setData).catch(() => setError('Error cargando datos'))
+    fetch('/api/data').then(r => r.json()).then((d: SiteData) => {
+      setData(d)
+      setExpandedBrands(new Set(d.products.map((p: Product) => p.category.brandId).filter(Boolean) as string[]))
+      setExpandedCollections(new Set(d.products.map((p: Product) => p.category.collectionId).filter(Boolean) as string[]))
+    }).catch(() => setError('Error cargando datos'))
   }, [])
 
   // ── Helpers ──────────────────────────────────────────────────────────────
@@ -268,20 +274,33 @@ export default function AdminProductsPage() {
     p.sku.toLowerCase().includes(search.toLowerCase())
   ) ?? []
 
-  const getCategoryLabel = (product: Product) => {
-    if (!data) return '—'
-    const wb = data.watchBrands.find(b => b.id === product.category.brandId)
-    const col = wb?.collections.find(c => c.id === product.category.collectionId)
-    if (!wb) return '—'
-    return [wb.name, col?.name].filter(Boolean).join(' › ')
+  const toggleBrand = (id: string) => {
+    setExpandedBrands(s => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n })
   }
 
-  if (!data) return <div className="p-10 text-white/30 text-sm">Cargando...</div>
+  const toggleCollection = (id: string) => {
+    setExpandedCollections(s => { const n = new Set(s); n.has(id) ? n.delete(id) : n.add(id); return n })
+  }
+
+  const grouped = useMemo(() => {
+    const map = new Map<string, Map<string, Product[]>>()
+    filtered.forEach(p => {
+      const bId = p.category.brandId || '__none__'
+      const cId = p.category.collectionId || '__none__'
+      if (!map.has(bId)) map.set(bId, new Map())
+      const cols = map.get(bId)!
+      if (!cols.has(cId)) cols.set(cId, [])
+      cols.get(cId)!.push(p)
+    })
+    return map
+  }, [filtered])
+
+  if (!data) return <div className="p-4 text-white/30 text-sm">Cargando...</div>
 
   return (
-    <div className="p-10">
+    <div className="p-4 md:p-10">
       {/* Header */}
-      <div className="mb-10 flex items-start justify-between">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="font-label-caps text-[10px] tracking-[0.25em] text-[#D4AF37] mb-3">ADMIN / PRODUCTOS</p>
           <h1 className="text-white text-2xl font-light">Catálogo</h1>
@@ -289,7 +308,7 @@ export default function AdminProductsPage() {
         </div>
         <button
           onClick={openAdd}
-          className="flex items-center gap-2 px-5 py-3 bg-[#D4AF37] text-[#0A0A0A] font-label-caps text-[10px] tracking-[0.18em] hover:bg-[#f2ca50] transition-colors"
+          className="flex items-center gap-2 px-5 py-3 bg-[#D4AF37] text-[#0A0A0A] font-label-caps text-[10px] tracking-[0.18em] hover:bg-[#f2ca50] transition-colors sm:self-start"
         >
           <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>add</span>
           AÑADIR PRODUCTO
@@ -297,7 +316,7 @@ export default function AdminProductsPage() {
       </div>
 
       {/* Search */}
-      <div className="flex items-center gap-3 bg-[#111] border border-white/8 px-4 py-3 mb-6 max-w-sm">
+      <div className="flex items-center gap-3 bg-[#111] border border-white/8 px-4 py-3 mb-6 w-full sm:max-w-sm">
         <span className="material-symbols-outlined text-white/25" style={{ fontSize: '16px' }}>search</span>
         <input
           type="search"
@@ -311,79 +330,133 @@ export default function AdminProductsPage() {
       {error && <p className="mb-4 text-red-400 text-xs">{error}</p>}
       {saved && <p className="mb-4 text-green-400/80 font-label-caps text-[10px] tracking-wider">✓ GUARDADO</p>}
 
-      <div className="bg-[#111] border border-white/8 overflow-x-auto">
-        <table className="w-full min-w-[860px]">
-          <thead>
-            <tr className="border-b border-white/8">
-              {['IMG', 'SKU (DISEÑO)', 'MARCA / NOMBRE', 'CATEGORÍA', 'PRECIO', 'OFERTA', 'DEST.', ''].map(h => (
-                <th key={h} className="px-4 py-4 text-left font-label-caps text-[9px] tracking-[0.15em] text-white/30 whitespace-nowrap">
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-white/5">
-            {filtered.map(product => (
-              <tr key={product.id} className="hover:bg-white/2 transition-colors group">
-                <td className="px-4 py-4 w-12">
-                  <div className="relative w-10 h-12 bg-[#0e0e0e] overflow-hidden">
-                    {product.image && (
-                      <Image src={product.image} alt={product.name} fill className="object-cover" sizes="40px" unoptimized={product.image.startsWith('/uploads/')} />
-                    )}
+      {grouped.size === 0 ? (
+        <div className="border border-dashed border-white/8 py-12 text-center">
+          <span className="material-symbols-outlined text-white/20 block mb-3" style={{ fontSize: 32 }}>inventory_2</span>
+          <p className="text-white/30 text-sm font-light">{search ? 'Sin resultados.' : 'No hay productos.'}</p>
+        </div>
+      ) : (
+        <div className="space-y-2">
+          {[...grouped.entries()].map(([bId, collections]) => {
+            const brand = watchBrands.find(b => b.id === bId)
+            const brandName = brand?.name ?? 'Sin marca'
+            const isBrandOpen = expandedBrands.has(bId)
+            const totalCount = [...collections.values()].reduce((a, p) => a + p.length, 0)
+            return (
+              <div key={bId} className="border border-white/8 bg-[#0d0d0d]">
+                {/* Brand folder */}
+                <button
+                  onClick={() => toggleBrand(bId)}
+                  className="w-full flex items-center gap-3 px-4 h-11 hover:bg-white/[0.03] text-left transition-colors"
+                >
+                  <span className={`material-symbols-outlined text-white/30 flex-none transition-transform duration-200 ${isBrandOpen ? 'rotate-90' : ''}`} style={{ fontSize: 16 }}>chevron_right</span>
+                  <span className="material-symbols-outlined text-[#D4AF37]/50 flex-none" style={{ fontSize: 16 }}>folder</span>
+                  <span className="font-label-caps text-[10px] tracking-[0.15em] text-white/80 flex-1">{brandName.toUpperCase()}</span>
+                  <span className="font-label-caps text-[9px] text-white/25 flex-none">{totalCount} pieza{totalCount !== 1 ? 's' : ''}</span>
+                </button>
+
+                {isBrandOpen && (
+                  <div className="border-t border-white/5">
+                    {[...collections.entries()].map(([cId, products]) => {
+                      const col = brand?.collections.find(c => c.id === cId)
+                      const colName = col?.name ?? 'Sin colección'
+                      const isColOpen = expandedCollections.has(cId)
+                      return (
+                        <div key={cId} className="border-b border-white/4 last:border-b-0">
+                          {/* Collection subfolder */}
+                          <button
+                            onClick={() => toggleCollection(cId)}
+                            className="w-full flex items-center gap-3 pl-8 pr-4 h-9 bg-white/[0.015] hover:bg-white/[0.03] text-left transition-colors"
+                          >
+                            <span className={`material-symbols-outlined text-white/20 flex-none transition-transform duration-200 ${isColOpen ? 'rotate-90' : ''}`} style={{ fontSize: 14 }}>chevron_right</span>
+                            <span className="material-symbols-outlined text-white/30 flex-none" style={{ fontSize: 14 }}>folder_open</span>
+                            <span className="font-label-caps text-[9px] tracking-[0.12em] text-white/55 flex-1">{colName.toUpperCase()}</span>
+                            <span className="font-label-caps text-[8px] text-white/20 flex-none">{products.length} pieza{products.length !== 1 ? 's' : ''}</span>
+                          </button>
+
+                          {isColOpen && (
+                            <div className="overflow-x-auto border-t border-white/4">
+                              <table className="w-full min-w-[640px]">
+                                <thead>
+                                  <tr className="border-b border-white/5">
+                                    <th className="pl-12 pr-2 py-2 text-left font-label-caps text-[8px] tracking-[0.12em] text-white/20 w-12"></th>
+                                    <th className="px-3 py-2 text-left font-label-caps text-[8px] tracking-[0.12em] text-white/20 whitespace-nowrap">SKU</th>
+                                    <th className="px-3 py-2 text-left font-label-caps text-[8px] tracking-[0.12em] text-white/20">NOMBRE</th>
+                                    <th className="px-3 py-2 text-left font-label-caps text-[8px] tracking-[0.12em] text-white/20 whitespace-nowrap">PRECIO</th>
+                                    <th className="px-3 py-2 text-left font-label-caps text-[8px] tracking-[0.12em] text-white/20 whitespace-nowrap">OFERTA</th>
+                                    <th className="px-3 py-2 text-center font-label-caps text-[8px] text-white/20 w-8">★</th>
+                                    <th className="px-3 py-2 w-20"></th>
+                                  </tr>
+                                </thead>
+                                <tbody className="divide-y divide-white/3">
+                                  {products.map(product => (
+                                    <tr key={product.id} className="hover:bg-white/[0.02] transition-colors group">
+                                      <td className="pl-12 pr-2 py-3">
+                                        <div className="relative w-8 h-10 bg-[#0e0e0e] overflow-hidden">
+                                          {product.image && (
+                                            <Image src={product.image} alt={product.name} fill className="object-cover" sizes="32px" unoptimized={product.image.startsWith('/uploads/')} />
+                                          )}
+                                        </div>
+                                      </td>
+                                      <td className="px-3 py-3">
+                                        <span className="font-mono text-[11px] text-[#D4AF37]">{product.sku}</span>
+                                      </td>
+                                      <td className="px-3 py-3">
+                                        <p className="text-white/80 text-sm font-light">{product.name}</p>
+                                      </td>
+                                      <td className="px-3 py-3 whitespace-nowrap">
+                                        <span className="text-white/60 text-sm tabular-nums font-light">₲{product.price.toLocaleString('es-PY')}</span>
+                                      </td>
+                                      <td className="px-3 py-3 whitespace-nowrap">
+                                        {product.salePrice ? (
+                                          <span className="text-[#D4AF37] text-sm tabular-nums font-light">₲{product.salePrice.toLocaleString('es-PY')}</span>
+                                        ) : (
+                                          <span className="text-white/15 text-xs">—</span>
+                                        )}
+                                      </td>
+                                      <td className="px-3 py-3 text-center">
+                                        {product.bestSeller && (
+                                          <span className="material-symbols-outlined text-[#D4AF37]" style={{ fontSize: '14px' }}>star</span>
+                                        )}
+                                      </td>
+                                      <td className="px-3 py-3 text-right">
+                                        <div className="flex items-center justify-end gap-1">
+                                          <button onClick={() => openEdit(product)} className="text-white/25 hover:text-white p-1.5 transition-colors">
+                                            <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>edit</span>
+                                          </button>
+                                          {deletingId === product.id ? (
+                                            <div className="flex gap-1">
+                                              <button onClick={() => handleDelete(product.id)} className="font-label-caps text-[9px] text-red-400 px-2 py-1">SÍ</button>
+                                              <button onClick={() => setDeletingId(null)} className="font-label-caps text-[9px] text-white/25 px-2 py-1">NO</button>
+                                            </div>
+                                          ) : (
+                                            <button onClick={() => setDeletingId(product.id)} className="text-white/20 hover:text-red-400 p-1.5 transition-colors">
+                                              <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>delete</span>
+                                            </button>
+                                          )}
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
                   </div>
-                </td>
-                <td className="px-4 py-4">
-                  <span className="font-mono text-[11px] text-[#D4AF37]">{product.sku}</span>
-                </td>
-                <td className="px-4 py-4">
-                  <p className="font-label-caps text-[9px] tracking-[0.12em] text-[#D4AF37] mb-0.5">{product.brand}</p>
-                  <p className="text-white/80 text-sm font-light">{product.name}</p>
-                </td>
-                <td className="px-4 py-4 max-w-[180px]">
-                  <span className="text-white/30 text-xs font-light leading-snug">{getCategoryLabel(product)}</span>
-                </td>
-                <td className="px-4 py-4 whitespace-nowrap">
-                  <span className="text-white/60 text-sm tabular-nums font-light">₲{product.price.toLocaleString('es-PY')}</span>
-                </td>
-                <td className="px-4 py-4 whitespace-nowrap">
-                  {product.salePrice ? (
-                    <span className="text-[#D4AF37] text-sm tabular-nums font-light">₲{product.salePrice.toLocaleString('es-PY')}</span>
-                  ) : (
-                    <span className="text-white/15 text-xs">—</span>
-                  )}
-                </td>
-                <td className="px-4 py-4 text-center">
-                  {product.bestSeller && (
-                    <span className="material-symbols-outlined text-[#D4AF37]" style={{ fontSize: '16px' }} title="Más vendido">star</span>
-                  )}
-                </td>
-                <td className="px-4 py-4 text-right">
-                  <div className="flex items-center justify-end gap-1">
-                    <button onClick={() => openEdit(product)} className="text-white/25 hover:text-white p-1 transition-colors">
-                      <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>edit</span>
-                    </button>
-                    {deletingId === product.id ? (
-                      <div className="flex gap-1">
-                        <button onClick={() => handleDelete(product.id)} className="font-label-caps text-[9px] text-red-400 px-1">SÍ</button>
-                        <button onClick={() => setDeletingId(null)} className="font-label-caps text-[9px] text-white/25 px-1">NO</button>
-                      </div>
-                    ) : (
-                      <button onClick={() => setDeletingId(product.id)} className="text-white/20 hover:text-red-400 p-1 transition-colors">
-                        <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>delete</span>
-                      </button>
-                    )}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                )}
+              </div>
+            )
+          })}
+        </div>
+      )}
 
       {modalOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-[#0e0e0e] border border-white/10 w-full max-w-2xl max-h-[92vh] overflow-y-auto flex flex-col">
-            <div className="flex items-center justify-between px-8 py-6 border-b border-white/8 sticky top-0 bg-[#0e0e0e] z-10">
+          <div className="bg-[#0e0e0e] border border-white/10 w-full max-w-2xl max-h-[100dvh] sm:max-h-[92vh] overflow-y-auto flex flex-col">
+            <div className="flex items-center justify-between px-4 py-4 sm:px-8 sm:py-6 border-b border-white/8 sticky top-0 bg-[#0e0e0e] z-10">
               <p className="font-label-caps text-[11px] tracking-[0.2em] text-white">
                 {editingId ? 'EDITAR PRODUCTO' : 'NUEVO PRODUCTO'}
               </p>
@@ -392,7 +465,7 @@ export default function AdminProductsPage() {
               </button>
             </div>
 
-            <div className="p-8 space-y-8">
+            <div className="p-4 sm:p-8 space-y-6 sm:space-y-8">
               {/* ── Galería de Imágenes (Compacta) ── */}
               <section>
                 <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/8">
@@ -650,7 +723,7 @@ export default function AdminProductsPage() {
               </section>
             </div>
 
-            <div className="flex items-center justify-end gap-3 px-8 py-6 border-t border-white/8 sticky bottom-0 bg-[#0e0e0e]">
+            <div className="flex items-center justify-end gap-3 px-4 py-4 sm:px-8 sm:py-6 border-t border-white/8 sticky bottom-0 bg-[#0e0e0e]">
               <button onClick={() => setModalOpen(false)} className="px-6 py-3 border border-white/10 text-white/40 font-label-caps text-[10px]">CANCELAR</button>
               <button
                 onClick={handleModalSave}

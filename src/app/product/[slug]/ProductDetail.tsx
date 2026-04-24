@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useCart } from '@/context/CartContext'
+import { useFavorites } from '@/context/FavoritesContext'
+import { toastAddedToCart, toastAddedToFavorites, toastRemovedFromFavorites } from '@/lib/toast'
 import type { Product } from '@/lib/types'
 
 interface Breadcrumb {
@@ -19,7 +21,8 @@ interface Props {
 }
 
 export default function ProductDetail({ product, recommended, breadcrumb }: Props) {
-  const { addItem, openCart } = useCart()
+  const { addItem } = useCart()
+  const { isFavorite, toggleFavorite } = useFavorites()
 
   // Primary image always first, then additional gallery images
   const gallery = [product.image, ...(product.images ?? [])].filter(Boolean)
@@ -28,7 +31,10 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
   const [isImageLoaded, setIsImageLoaded] = useState(false)
   const [added, setAdded] = useState(false)
   const [zoom, setZoom] = useState<{ x: number; y: number } | null>(null)
+  const [canZoom, setCanZoom] = useState(false)
   const thumbsRef = useRef<HTMLDivElement>(null)
+
+  const favorited = isFavorite(product.id)
 
   const hasOffer = product.salePrice != null && product.salePrice < product.price
   const displayPrice = hasOffer ? product.salePrice! : product.price
@@ -42,6 +48,10 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
     setIsImageLoaded(false)
   }, [product.id])
 
+  useEffect(() => {
+    setCanZoom(window.matchMedia('(pointer: fine)').matches)
+  }, [])
+
   function selectImage(index: number) {
     if (index === activeIndex) return
     setIsImageLoaded(false)
@@ -53,8 +63,18 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
 
   function handleAddToCart() {
     addItem(product)
+    toastAddedToCart(product.name)
     setAdded(true)
     setTimeout(() => setAdded(false), 2000)
+  }
+
+  function handleToggleFavorite() {
+    toggleFavorite(product)
+    if (favorited) {
+      toastRemovedFromFavorites(product.name)
+    } else {
+      toastAddedToFavorites(product.name)
+    }
   }
 
   function handleZoomMove(e: React.MouseEvent<HTMLDivElement>) {
@@ -98,9 +118,9 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
           <div className="flex flex-col gap-3 lg:sticky lg:top-8">
             {/* Main image */}
             <div
-              className="relative aspect-[3/4] bg-[#0e0e0e] border border-white/5 overflow-hidden cursor-zoom-in"
-              onMouseMove={handleZoomMove}
-              onMouseLeave={() => setZoom(null)}
+              className={`relative aspect-[3/4] bg-[#0e0e0e] border border-white/5 overflow-hidden ${canZoom ? 'cursor-zoom-in' : ''}`}
+              onMouseMove={canZoom ? handleZoomMove : undefined}
+              onMouseLeave={canZoom ? () => setZoom(null) : undefined}
             >
               <Image
                 key={activeIndex}
@@ -109,7 +129,7 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
                 fill
                 priority
                 className={`object-cover transition-opacity duration-500 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
-                style={zoom
+                style={canZoom && zoom
                   ? { transform: `scale(1.85)`, transformOrigin: `${zoom.x}% ${zoom.y}%`, transition: 'transform 0.12s linear' }
                   : { transform: 'scale(1)', transition: 'transform 0.3s ease-out' }
                 }
@@ -260,15 +280,24 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
                 <span className="material-symbols-outlined" style={{ fontSize: 16 }}>
                   {added ? 'check' : 'shopping_bag'}
                 </span>
-                {added ? 'AÑADIDO AL CARRITO' : 'AÑADIR A LA COLECCIÓN'}
+                {added ? 'AÑADIDO' : 'AÑADIR AL CARRITO'}
               </button>
 
               <button
-                onClick={openCart}
-                className="w-full py-3.5 border border-white/12 text-white/45 font-label-caps text-[10px] tracking-[0.2em] hover:border-white/30 hover:text-white/70 transition-all duration-200 flex items-center justify-center gap-2"
+                onClick={handleToggleFavorite}
+                className={`w-full py-3.5 border font-label-caps text-[10px] tracking-[0.2em] transition-all duration-200 flex items-center justify-center gap-2 ${
+                  favorited
+                    ? 'border-[#D4AF37]/50 text-[#D4AF37] bg-[#D4AF37]/5'
+                    : 'border-white/12 text-white/45 hover:border-[#D4AF37]/40 hover:text-[#D4AF37]/70'
+                }`}
               >
-                <span className="material-symbols-outlined" style={{ fontSize: 15 }}>shopping_cart</span>
-                VER CARRITO
+                <span
+                  className="material-symbols-outlined"
+                  style={{ fontSize: 15, fontVariationSettings: favorited ? "'FILL' 1" : "'FILL' 0" }}
+                >
+                  favorite
+                </span>
+                {favorited ? 'EN FAVORITOS' : 'AÑADIR A FAVORITOS'}
               </button>
             </div>
 

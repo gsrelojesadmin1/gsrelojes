@@ -60,27 +60,27 @@
   ],
   "watchBrands": [
     {
-      "id": "mobyhmd7-un2a8",
+      "id": "casio",
       "name": "CASIO",
       "collections": [
         {
-          "id": "mobyhrms-5zh8z",
+          "id": "casio-vintage",
           "name": "VINTAGE",
           "models": []
         },
         {
-          "id": "mobyi41e-7p24a",
+          "id": "casio-g-shock",
           "name": "G-SHOCK",
           "models": []
         }
       ]
     },
     {
-      "id": "moc5t0x1-imdmw",
+      "id": "curren",
       "name": "CURREN",
       "collections": [
         {
-          "id": "moc5t5cx-qns85",
+          "id": "curren-cronografo",
           "name": "CRONOGRAFO",
           "models": []
         }
@@ -100,8 +100,8 @@
         "https://res.cloudinary.com/duiij9qlz/image/upload/v1776977504/gs-relojes/wlze50a5gco0rjrowpwy.avif"
       ],
       "category": {
-        "brandId": "mobyhmd7-un2a8",
-        "collectionId": "mobyhrms-5zh8z",
+        "brandId": "casio",
+        "collectionId": "casio-vintage",
         "modelId": ""
       },
       "description": "",
@@ -116,8 +116,8 @@
       "image": "https://res.cloudinary.com/duiij9qlz/image/upload/v1776979219/gs-relojes/kpz6cq212brkya6egraz.avif",
       "images": [],
       "category": {
-        "brandId": "mobyhmd7-un2a8",
-        "collectionId": "mobyhrms-5zh8z",
+        "brandId": "casio",
+        "collectionId": "casio-vintage",
         "modelId": ""
       },
       "description": "",
@@ -135,8 +135,8 @@
         "https://www.zeitauktion.com/cdn/shop/files/2501379_06_2k.jpg?v=1747382605&width=2400"
       ],
       "category": {
-        "brandId": "mobyhmd7-un2a8",
-        "collectionId": "mobyhrms-5zh8z",
+        "brandId": "casio",
+        "collectionId": "casio-vintage",
         "modelId": ""
       },
       "description": "",
@@ -154,8 +154,8 @@
         "NUEVO"
       ],
       "category": {
-        "brandId": "mobyhmd7-un2a8",
-        "collectionId": "mobyhrms-5zh8z",
+        "brandId": "casio",
+        "collectionId": "casio-vintage",
         "modelId": ""
       },
       "description": "",
@@ -175,8 +175,8 @@
       ],
       "bestSeller": true,
       "category": {
-        "brandId": "moc5t0x1-imdmw",
-        "collectionId": "moc5t5cx-qns85",
+        "brandId": "curren",
+        "collectionId": "curren-cronografo",
         "modelId": ""
       },
       "description": "",
@@ -195,8 +195,8 @@
       ],
       "bestSeller": true,
       "category": {
-        "brandId": "moc5t0x1-imdmw",
-        "collectionId": "moc5t5cx-qns85",
+        "brandId": "curren",
+        "collectionId": "curren-cronografo",
         "modelId": ""
       },
       "description": "",
@@ -216,8 +216,8 @@
       ],
       "bestSeller": false,
       "category": {
-        "brandId": "mobyhmd7-un2a8",
-        "collectionId": "mobyi41e-7p24a",
+        "brandId": "casio",
+        "collectionId": "casio-g-shock",
         "modelId": ""
       },
       "description": "",
@@ -234,8 +234,8 @@
       "tags": [],
       "bestSeller": false,
       "category": {
-        "brandId": "moc5t0x1-imdmw",
-        "collectionId": "moc5t5cx-qns85",
+        "brandId": "curren",
+        "collectionId": "curren-cronografo",
         "modelId": ""
       },
       "description": "",
@@ -252,8 +252,8 @@
       "tags": [],
       "bestSeller": false,
       "category": {
-        "brandId": "mobyhmd7-un2a8",
-        "collectionId": "mobyi41e-7p24a",
+        "brandId": "casio",
+        "collectionId": "casio-g-shock",
         "modelId": ""
       },
       "description": "",
@@ -307,7 +307,7 @@
       "id": "1776980740060",
       "name": "cassio",
       "image": "https://cdn.worldvectorlogo.com/logos/casio.svg",
-      "link": "/buscar?q=marca"
+      "link": "/brand/casio"
     },
     {
       "id": "1776980761428",
@@ -329,8 +329,8 @@
     }
   ],
   "announcements": [
-    "NUEVA COLECCIÓN DE OTOÑO",
-    "ENVÍO GRATIS A TODO EL PAIS",
+    "100% originales✅",
+    "ENVÍO GRATIS A TODO EL PAIS🚚",
     "DESCUBRE LA EDICIÓN LIMITADA"
   ]
 }

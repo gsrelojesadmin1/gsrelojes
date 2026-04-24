@@ -19,7 +19,7 @@ const publicidadSections = [
 
 export default function PublicidadPage() {
   return (
-    <div className="p-10 max-w-3xl">
+    <div className="p-4 md:p-10 max-w-3xl">
       <div className="mb-10">
         <p className="font-label-caps text-[10px] tracking-[0.25em] text-[#D4AF37] mb-3">
           ADMIN / PUBLICIDAD

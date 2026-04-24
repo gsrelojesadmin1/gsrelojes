@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import gsap from 'gsap'
 import { useCart } from '@/context/CartContext'
 import { useFavorites } from '@/context/FavoritesContext'
 import FavoritesDrawer from '@/components/FavoritesDrawer'
@@ -25,6 +26,21 @@ export default function Header({ navbar, announcements }: HeaderProps) {
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [allProducts, setAllProducts] = useState<Product[]>([])
   const searchRef = useRef<HTMLDivElement>(null)
+  const brandRef = useRef<HTMLAnchorElement>(null)
+
+  // GSAP: entrada y shimmer periódico del logo
+  useEffect(() => {
+    const el = brandRef.current
+    if (!el) return
+
+    // Shimmer periódico: destello dorado en el texto cada ~8s
+    const shimmer = gsap.timeline({ repeat: -1, repeatDelay: 8, delay: 3 })
+    shimmer
+      .to(el, { textShadow: '0 0 18px rgba(212,175,55,0.9)', duration: 0.35, ease: 'power2.out' })
+      .to(el, { textShadow: '0 0 0px rgba(212,175,55,0)', duration: 0.6, ease: 'power2.in' })
+
+    return () => { shimmer.kill() }
+  }, [])
 
   // Cargar productos una vez
   useEffect(() => {
@@ -85,11 +101,11 @@ export default function Header({ navbar, announcements }: HeaderProps) {
 
   return (
     <>
-      <header className={`fixed ${announcements && announcements.length > 0 ? 'top-8' : 'top-0'} w-full z-50 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/8 transition-all duration-300`}>
+      <header className={`fixed ${announcements && announcements.length > 0 ? 'top-6 sm:top-8' : 'top-0'} w-full z-50 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/8 transition-all duration-300`}>
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-8 lg:px-12 h-[72px]">
 
           {/* Brand */}
-          <a href="/" className="font-label-caps text-[11px] tracking-[0.35em] text-[#D4AF37] hover:text-[#f2ca50] transition-colors">
+          <a ref={brandRef} href="/" className="font-label-caps text-[11px] tracking-[0.35em] text-[#D4AF37] hover:text-[#f2ca50] transition-colors">
             {navbar.brandName}
           </a>
 

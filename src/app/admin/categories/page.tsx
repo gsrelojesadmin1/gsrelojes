@@ -3,8 +3,15 @@
 import { useEffect, useState, useId } from 'react'
 import type { SiteData, WatchBrand, WatchCollection, WatchModel } from '@/lib/types'
 
+function toSlug(str: string) {
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+}
+
 function uid() {
-  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`
+  return `__new__${Date.now().toString(36)}`
 }
 
 type SaveState = 'idle' | 'saving' | 'saved' | 'error'
@@ -65,8 +72,15 @@ export default function AdminCategoriesPage() {
   }
 
   function commitBrandName(id: string) {
-    if (editValue.trim()) {
-      setBrands(b => b.map(br => br.id === id ? { ...br, name: editValue.trim() } : br))
+    const name = editValue.trim()
+    if (!name) { setEditingBrand(null); return }
+    if (id.startsWith('__new__')) {
+      let slug = toSlug(name)
+      if (brands.some(b => b.id === slug)) slug = `${slug}-${Date.now().toString(36)}`
+      setBrands(b => b.map(br => br.id === id ? { ...br, id: slug, name } : br))
+      setExpandedBrands(s => { const n = new Set(s); n.delete(id); n.add(slug); return n })
+    } else {
+      setBrands(b => b.map(br => br.id === id ? { ...br, name } : br))
     }
     setEditingBrand(null)
   }
@@ -91,10 +105,22 @@ export default function AdminCategoriesPage() {
   }
 
   function commitCollectionName(brandId: string, colId: string) {
-    if (editValue.trim()) {
+    const name = editValue.trim()
+    if (!name) { setEditingCollection(null); return }
+    if (colId.startsWith('__new__')) {
+      let slug = `${brandId}-${toSlug(name)}`
+      const allColIds = brands.flatMap(b => b.collections.map(c => c.id))
+      if (allColIds.includes(slug)) slug = `${slug}-${Date.now().toString(36)}`
       setBrands(b => b.map(br =>
         br.id === brandId
-          ? { ...br, collections: br.collections.map(c => c.id === colId ? { ...c, name: editValue.trim() } : c) }
+          ? { ...br, collections: br.collections.map(c => c.id === colId ? { ...c, id: slug, name } : c) }
+          : br
+      ))
+      setExpandedCollections(s => { const n = new Set(s); n.delete(colId); n.add(slug); return n })
+    } else {
+      setBrands(b => b.map(br =>
+        br.id === brandId
+          ? { ...br, collections: br.collections.map(c => c.id === colId ? { ...c, name } : c) }
           : br
       ))
     }
@@ -192,9 +218,9 @@ export default function AdminCategoriesPage() {
   }
 
   return (
-    <div className="px-10 py-10 max-w-3xl">
+    <div className="px-4 py-6 md:px-10 md:py-10 max-w-3xl">
       {/* Header */}
-      <div className="mb-10 flex items-end justify-between">
+      <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="font-label-caps text-[10px] tracking-[0.3em] text-[#D4AF37] mb-2">GESTIÓN DE CATÁLOGO</p>
           <h1 className="text-white text-2xl font-light tracking-wide">Categorías</h1>
@@ -205,7 +231,7 @@ export default function AdminCategoriesPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <button
             onClick={addBrand}
             className="flex items-center gap-2 px-4 py-2.5 border border-white/15 text-white/60 hover:text-white hover:border-white/30 transition-all"

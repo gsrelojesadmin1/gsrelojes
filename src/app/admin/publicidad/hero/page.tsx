@@ -117,7 +117,7 @@ export default function AdminPublicidadHeroPage() {
 
   if (!data) {
     return (
-      <div className="p-10 flex items-center gap-3">
+      <div className="p-4 flex items-center gap-3">
         <span className="material-symbols-outlined text-white/30 animate-spin" style={{ fontSize: '20px' }}>refresh</span>
         <span className="text-white/30 text-sm">Cargando...</span>
       </div>
@@ -127,9 +127,9 @@ export default function AdminPublicidadHeroPage() {
   const slides = data.heroSlides
 
   return (
-    <div className="p-10 max-w-5xl">
+    <div className="p-4 md:p-10 max-w-5xl">
       {/* ── Cabecera ────────────────────────────────────────────── */}
-      <div className="mb-10 flex items-start justify-between">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="font-label-caps text-[10px] tracking-[0.25em] text-[#D4AF37] mb-3">
             ADMIN / PUBLICIDAD / HERO
@@ -291,10 +291,10 @@ export default function AdminPublicidadHeroPage() {
 
       {/* ── Modal de edición ─────────────────────────────────────── */}
       {editingId && draft && (
-        <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-6">
-          <div className="bg-[#0d0d0d] border border-white/12 w-full max-w-2xl max-h-[92vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-3 sm:p-6">
+          <div className="bg-[#0d0d0d] border border-white/12 w-full max-w-2xl max-h-[100dvh] sm:max-h-[92vh] overflow-y-auto">
             {/* Header modal */}
-            <div className="p-7 border-b border-white/8 flex items-center justify-between sticky top-0 bg-[#0d0d0d] z-10">
+            <div className="p-4 sm:p-7 border-b border-white/8 flex items-center justify-between sticky top-0 bg-[#0d0d0d] z-10">
               <div>
                 <p className="font-label-caps text-[10px] tracking-[0.2em] text-[#D4AF37] mb-1">
                   {slides.some(s => s.id === draft.id) ? 'EDITAR SLIDE' : 'NUEVO SLIDE'}
@@ -309,7 +309,7 @@ export default function AdminPublicidadHeroPage() {
               </button>
             </div>
 
-            <div className="p-7 space-y-6">
+            <div className="p-4 sm:p-7 space-y-5 sm:space-y-6">
               {/* URL imagen */}
               <div>
                 <label className="block font-label-caps text-[10px] tracking-[0.15em] text-white/45 mb-2">
@@ -385,7 +385,7 @@ export default function AdminPublicidadHeroPage() {
               </div>
 
               {/* CTAs */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block font-label-caps text-[10px] tracking-[0.15em] text-white/45 mb-2">
                     BOTÓN PRINCIPAL
@@ -414,7 +414,7 @@ export default function AdminPublicidadHeroPage() {
             </div>
 
             {/* Footer modal */}
-            <div className="p-7 border-t border-white/8 flex gap-3 sticky bottom-0 bg-[#0d0d0d]">
+            <div className="p-4 sm:p-7 border-t border-white/8 flex gap-3 sticky bottom-0 bg-[#0d0d0d]">
               <button
                 onClick={saveSlide}
                 disabled={saving || !draft.title || !draft.backgroundImage}

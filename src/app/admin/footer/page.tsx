@@ -77,10 +77,10 @@ export default function AdminFooterPage() {
     setSaved(false)
   }
 
-  if (!data) return <div className="p-10 text-white/30 text-sm">Cargando...</div>
+  if (!data) return <div className="p-4 text-white/30 text-sm">Cargando...</div>
 
   return (
-    <div className="p-10 max-w-2xl">
+    <div className="p-4 md:p-10 max-w-2xl">
       <div className="mb-10">
         <p className="font-label-caps text-[10px] tracking-[0.25em] text-[#D4AF37] mb-3">ADMIN / FOOTER</p>
         <h1 className="text-white text-2xl font-light">Footer</h1>

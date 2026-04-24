@@ -14,10 +14,9 @@ export default function AnnouncementBar({ messages = [] }: { messages?: string[]
           <div key={i} className="flex items-center">
             {list.map((msg, idx) => (
               <div key={idx} className="flex items-center">
-                <span className="font-label-caps text-[10px] tracking-[0.25em] font-bold px-10">
+                <span className="font-label-caps text-[8px] sm:text-[10px] tracking-[0.2em] sm:tracking-[0.25em] font-bold px-6 sm:px-10">
                   {msg.toUpperCase()}
                 </span>
-                <span className="material-symbols-outlined text-[10px] opacity-30">diamond</span>
               </div>
             ))}
           </div>
@@ -29,7 +28,7 @@ export default function AnnouncementBar({ messages = [] }: { messages?: string[]
   if (!messages || messages.length === 0) return null
 
   return (
-    <div className="w-full bg-[#D4AF37] text-[#0A0A0A] overflow-hidden relative h-8 flex items-center z-[60] border-b border-black/5">
+    <div className="w-full bg-[#D4AF37] text-[#0A0A0A] overflow-hidden relative h-6 sm:h-8 flex items-center z-[60] border-b border-black/5">
       {content}
       
       <style dangerouslySetInnerHTML={{ __html: `

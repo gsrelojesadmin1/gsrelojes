@@ -33,7 +33,7 @@ export default function AdminDashboard() {
   }, [])
 
   return (
-    <div className="p-10 max-w-4xl">
+    <div className="p-4 md:p-10 max-w-4xl">
       <div className="mb-12">
         <p className="font-label-caps text-[10px] tracking-[0.25em] text-[#D4AF37] mb-3">PANEL DE CONTROL</p>
         <h1 className="text-white text-3xl font-light" style={{ letterSpacing: '-0.01em' }}>Dashboard</h1>
@@ -42,7 +42,7 @@ export default function AdminDashboard() {
 
       {/* Stats */}
       {data && (
-        <div className="grid grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
           <div className="bg-[#111] border border-white/8 p-6">
             <p className="font-label-caps text-[9px] tracking-[0.15em] text-white/30 mb-2">PRODUCTOS</p>
             <p className="text-white text-3xl font-light tabular-nums">{data.products.length}</p>
@@ -66,7 +66,7 @@ export default function AdminDashboard() {
               <span className="material-symbols-outlined text-[#D4AF37]/60" style={{ fontSize: '16px' }}>{group.groupIcon}</span>
               <p className="font-label-caps text-[9px] tracking-[0.3em] text-[#D4AF37]/60">{group.groupLabel}</p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {group.sections.map(s => (
                 <Link
                   key={s.href}

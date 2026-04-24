@@ -55,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LayoutTopBar messages={announcements} />
         <FavoritesProvider>
           <CartProvider>
-            <div className={announcements.length > 0 ? "pt-8" : ""}>
+            <div className={announcements.length > 0 ? "pt-6 sm:pt-8" : ""}>
               {children}
             </div>
             <CartDrawer />
