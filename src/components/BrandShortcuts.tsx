@@ -69,7 +69,7 @@ function ShortcutCard({ shortcut, index }: { shortcut: BrandShortcut; index: num
       delay: index * 1.1 + 1.5,
     })
 
-    return () => tween.kill()
+    return () => { tween.kill() }
   }, [index])
 
   function handleMouseEnter() {
