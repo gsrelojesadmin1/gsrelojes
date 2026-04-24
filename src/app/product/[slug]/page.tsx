@@ -45,6 +45,7 @@ export default async function ProductPage({ params }: Props) {
         <ProductDetail
           product={product}
           recommended={recommended}
+          policyDefaults={data.policyDefaults}
           breadcrumb={{
             brand: brand?.name ?? product.brand,
             collection: collection?.name,

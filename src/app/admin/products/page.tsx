@@ -19,6 +19,9 @@ const emptyForm = (): Omit<Product, 'id'> => ({
   bestSeller: false,
   category: { brandId: '', collectionId: '', modelId: '' },
   description: '',
+  specifications: [],
+  warranty: '',
+  shipping: '',
 })
 
 export default function AdminProductsPage() {
@@ -163,7 +166,7 @@ export default function AdminProductsPage() {
   const openEdit = (product: Product) => {
     setEditingId(product.id)
     const { id: _id, ...rest } = product
-    setForm(rest)
+    setForm({ ...emptyForm(), ...rest })
     setModalOpen(true)
   }
 
@@ -259,6 +262,18 @@ export default function AdminProductsPage() {
 
   const removeTag = (tagToRemove: string) => {
     updateForm('tags', (form.tags ?? []).filter(t => t !== tagToRemove))
+  }
+
+  const addSpec = () => {
+    updateForm('specifications', [...(form.specifications ?? []), { label: '', value: '' }])
+  }
+  const removeSpec = (i: number) => {
+    updateForm('specifications', (form.specifications ?? []).filter((_, idx) => idx !== i))
+  }
+  const updateSpec = (i: number, field: 'label' | 'value', val: string) => {
+    const specs = [...(form.specifications ?? [])]
+    specs[i] = { ...specs[i], [field]: val }
+    updateForm('specifications', specs)
   }
 
   const handleDelete = async (id: string) => {
@@ -720,6 +735,92 @@ export default function AdminProductsPage() {
                     />
                   </div>
                 </div>
+              </section>
+
+              {/* ── Especificaciones ── */}
+              <section>
+                <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/8">
+                  <p className="font-label-caps text-[9px] tracking-[0.2em] text-white/30">ESPECIFICACIONES TÉCNICAS</p>
+                  <button
+                    type="button"
+                    onClick={addSpec}
+                    className="text-[#D4AF37] font-label-caps text-[9px] tracking-wider hover:text-white transition-colors"
+                  >
+                    + AÑADIR FILA
+                  </button>
+                </div>
+                {(form.specifications ?? []).length === 0 ? (
+                  <p className="text-white/20 text-[11px] font-light italic text-center py-4 border border-dashed border-white/8">
+                    Sin especificaciones — el acordeón no aparecerá en el producto.
+                  </p>
+                ) : (
+                  <div className="space-y-2">
+                    {(form.specifications ?? []).map((spec, i) => (
+                      <div key={i} className="flex gap-2 items-center">
+                        <input
+                          type="text"
+                          placeholder="Característica (ej: Movimiento)"
+                          value={spec.label}
+                          onChange={e => updateSpec(i, 'label', e.target.value)}
+                          className="flex-1 bg-[#111] border border-white/10 text-white/70 text-[11px] px-3 py-2 outline-none focus:border-[#D4AF37]/40 placeholder:text-white/20"
+                        />
+                        <input
+                          type="text"
+                          placeholder="Valor (ej: Cuarzo japonés)"
+                          value={spec.value}
+                          onChange={e => updateSpec(i, 'value', e.target.value)}
+                          className="flex-1 bg-[#111] border border-white/10 text-white/70 text-[11px] px-3 py-2 outline-none focus:border-[#D4AF37]/40 placeholder:text-white/20"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => removeSpec(i)}
+                          className="text-white/20 hover:text-red-400 transition-colors p-1 flex-none"
+                          aria-label="Eliminar fila"
+                        >
+                          <span className="material-symbols-outlined" style={{ fontSize: 16 }}>delete</span>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </section>
+
+              {/* ── Garantía ── */}
+              <section>
+                <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/8">
+                  <p className="font-label-caps text-[9px] tracking-[0.2em] text-white/30">GARANTÍA</p>
+                  <p className="text-white/20 text-[9px] font-light italic">Vacío = usa texto predefinido</p>
+                </div>
+                <textarea
+                  rows={3}
+                  value={form.warranty ?? ''}
+                  onChange={e => updateForm('warranty', e.target.value)}
+                  placeholder={
+                    data.policyDefaults?.warranty
+                      ? `Predefinido: "${data.policyDefaults.warranty.substring(0, 70)}${data.policyDefaults.warranty.length > 70 ? '…' : ''}"`
+                      : 'Texto de garantía para este producto (opcional)…'
+                  }
+                  className="w-full bg-[#111] border border-white/10 text-white/70 text-[11px] px-3 py-2.5 outline-none focus:border-[#D4AF37]/40 resize-none placeholder:text-white/20 leading-relaxed"
+                />
+              </section>
+
+              {/* ── Envío y Devoluciones ── */}
+              <section>
+                <div className="flex items-center justify-between mb-3 pb-2 border-b border-white/8">
+                  <p className="font-label-caps text-[9px] tracking-[0.2em] text-white/30">ENVÍO Y DEVOLUCIONES</p>
+                  <p className="text-white/20 text-[9px] font-light italic">Vacío = usa texto predefinido</p>
+                </div>
+                <textarea
+                  rows={3}
+                  value={form.shipping ?? ''}
+                  onChange={e => updateForm('shipping', e.target.value)}
+                  placeholder={
+                    data.policyDefaults?.shipping
+                      ? `Predefinido: "${data.policyDefaults.shipping.substring(0, 70)}${data.policyDefaults.shipping.length > 70 ? '…' : ''}"`
+                      : 'Texto de envío para este producto (opcional)…'
+                  }
+                  className="w-full bg-[#111] border border-white/10 text-white/70 text-[11px] px-3 py-2.5 outline-none focus:border-[#D4AF37]/40 resize-none placeholder:text-white/20 leading-relaxed"
+                />
               </section>
             </div>
 

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useCart } from '@/context/CartContext'
 import { useFavorites } from '@/context/FavoritesContext'
 import { toastAddedToCart, toastAddedToFavorites, toastRemovedFromFavorites } from '@/lib/toast'
-import type { Product } from '@/lib/types'
+import type { Product, PolicyDefaults } from '@/lib/types'
 
 interface Breadcrumb {
   brand: string
@@ -18,9 +18,10 @@ interface Props {
   product: Product
   recommended: Product[]
   breadcrumb: Breadcrumb
+  policyDefaults?: PolicyDefaults
 }
 
-export default function ProductDetail({ product, recommended, breadcrumb }: Props) {
+export default function ProductDetail({ product, recommended, breadcrumb, policyDefaults }: Props) {
   const { addItem } = useCart()
   const { isFavorite, toggleFavorite } = useFavorites()
 
@@ -302,7 +303,7 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
             </div>
 
             {/* Details accordion */}
-            <ProductAccordion />
+            <ProductAccordion product={product} policyDefaults={policyDefaults} />
           </div>
         </div>
       </div>
@@ -375,46 +376,65 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
   )
 }
 
-// ── Simple static accordion ─────────────────────────────────────────────────
+// ── Dynamic accordion ───────────────────────────────────────────────────────
 
-const SPECS = [
-  { label: 'Garantía', value: 'Internacional — 2 años' },
-  { label: 'Entrega', value: 'Envío gratuito mundial en 3–5 días hábiles' },
-  { label: 'Autenticidad', value: 'Certificado de autenticidad incluido' },
-  { label: 'Devoluciones', value: 'Devolución gratuita en 14 días' },
-]
-
-function ProductAccordion() {
+function ProductAccordion({ product, policyDefaults }: {
+  product: Product
+  policyDefaults?: PolicyDefaults
+}) {
   const [open, setOpen] = useState<string | null>(null)
 
-  const items = [
-    {
+  const warrantyText = product.warranty || policyDefaults?.warranty || ''
+  const shippingText = product.shipping || policyDefaults?.shipping || ''
+  const specs = product.specifications ?? []
+
+  const items: { id: string; label: string; icon: string; content: React.ReactNode }[] = []
+
+  if (specs.length > 0) {
+    items.push({
       id: 'specs',
-      label: 'Especificaciones y Garantía',
-      icon: 'verified',
+      label: 'Especificaciones',
+      icon: 'settings',
       content: (
         <dl className="space-y-3">
-          {SPECS.map(s => (
-            <div key={s.label} className="flex justify-between gap-4">
+          {specs.map((s, i) => (
+            <div key={i} className="flex justify-between gap-4">
               <dt className="font-label-caps text-[9px] tracking-[0.15em] text-white/30">{s.label.toUpperCase()}</dt>
               <dd className="text-white/55 text-[12px] font-light text-right">{s.value}</dd>
             </div>
           ))}
         </dl>
       ),
-    },
-    {
+    })
+  }
+
+  if (warrantyText) {
+    items.push({
+      id: 'warranty',
+      label: 'Garantía',
+      icon: 'verified',
+      content: (
+        <p className="text-white/50 text-[12px] font-light leading-relaxed whitespace-pre-line">
+          {warrantyText}
+        </p>
+      ),
+    })
+  }
+
+  if (shippingText) {
+    items.push({
       id: 'shipping',
       label: 'Envío y Devoluciones',
       icon: 'local_shipping',
       content: (
-        <p className="text-white/50 text-[12px] font-light leading-relaxed">
-          Cada pieza viaja en su estuche original dentro de un embalaje de madera lacada. El seguro de transporte
-          cubre el valor completo del reloj hasta su recepción confirmada.
+        <p className="text-white/50 text-[12px] font-light leading-relaxed whitespace-pre-line">
+          {shippingText}
         </p>
       ),
-    },
-  ]
+    })
+  }
+
+  if (items.length === 0) return null
 
   return (
     <div className="border-t border-white/6 mt-2">

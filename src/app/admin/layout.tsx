@@ -28,6 +28,7 @@ const navGroups = [
       { href: '/admin/navbar', label: 'Navbar', icon: 'menu' },
       { href: '/admin/products', label: 'Productos', icon: 'inventory_2' },
       { href: '/admin/categories', label: 'Categorías', icon: 'account_tree' },
+      { href: '/admin/politicas', label: 'Políticas', icon: 'policy' },
       { href: '/admin/footer', label: 'Footer', icon: 'vertical_align_bottom' },
     ],
   },

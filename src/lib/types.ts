@@ -49,6 +49,16 @@ export interface ProductCategory {
 
 // ── Product ──────────────────────────────────────────────────────────────────
 
+export interface ProductSpec {
+  label: string
+  value: string
+}
+
+export interface PolicyDefaults {
+  warranty: string
+  shipping: string
+}
+
 export interface Product {
   id: string
   sku: string
@@ -63,6 +73,9 @@ export interface Product {
   bestSeller?: boolean
   category: ProductCategory
   description: string
+  specifications?: ProductSpec[]
+  warranty?: string
+  shipping?: string
 }
 
 export interface FooterData {
@@ -105,6 +118,7 @@ export interface SiteData {
   products: Product[]
   watchBrands: WatchBrand[]
   footer: FooterData
+  policyDefaults?: PolicyDefaults
 }
 
 export interface CartItem extends Product {
