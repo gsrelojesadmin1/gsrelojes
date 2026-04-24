@@ -27,6 +27,7 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
   const [activeIndex, setActiveIndex] = useState(0)
   const [isImageLoaded, setIsImageLoaded] = useState(false)
   const [added, setAdded] = useState(false)
+  const [zoom, setZoom] = useState<{ x: number; y: number } | null>(null)
   const thumbsRef = useRef<HTMLDivElement>(null)
 
   const hasOffer = product.salePrice != null && product.salePrice < product.price
@@ -56,6 +57,14 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
     setTimeout(() => setAdded(false), 2000)
   }
 
+  function handleZoomMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setZoom({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    })
+  }
+
   const isLocal = (url: string) => url.startsWith('/uploads/')
 
   return (
@@ -83,20 +92,28 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
 
       {/* ── Main layout ──────────────────────────────────────────────────────── */}
       <div className="max-w-[1440px] mx-auto px-8 lg:px-12 py-10 lg:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px] gap-10 xl:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] xl:grid-cols-[400px_1fr] gap-10 xl:gap-14 items-start max-w-[960px]">
 
           {/* ── Gallery ────────────────────────────────────────────────────── */}
-          <div className="flex flex-col gap-4 lg:sticky lg:top-8">
+          <div className="flex flex-col gap-3 lg:sticky lg:top-8">
             {/* Main image */}
-            <div className="relative aspect-[4/5] bg-[#0e0e0e] border border-white/5 overflow-hidden group">
+            <div
+              className="relative aspect-[3/4] bg-[#0e0e0e] border border-white/5 overflow-hidden cursor-zoom-in"
+              onMouseMove={handleZoomMove}
+              onMouseLeave={() => setZoom(null)}
+            >
               <Image
                 key={activeIndex}
                 src={gallery[activeIndex]}
                 alt={`${product.name} — imagen ${activeIndex + 1}`}
                 fill
                 priority
-                className={`object-cover transition-all duration-500 ${isImageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.02]'} group-hover:scale-[1.03]`}
-                sizes="(max-width: 1024px) 100vw, 55vw"
+                className={`object-cover transition-opacity duration-500 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                style={zoom
+                  ? { transform: `scale(1.85)`, transformOrigin: `${zoom.x}% ${zoom.y}%`, transition: 'transform 0.12s linear' }
+                  : { transform: 'scale(1)', transition: 'transform 0.3s ease-out' }
+                }
+                sizes="(max-width: 1024px) 100vw, 400px"
                 unoptimized={isLocal(gallery[activeIndex])}
                 onLoad={() => setIsImageLoaded(true)}
               />
@@ -118,18 +135,18 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
               )}
 
               {/* Arrow navigation for desktop */}
-              {gallery.length > 1 && (
+              {gallery.length > 1 && !zoom && (
                 <>
                   <button
                     onClick={() => selectImage((activeIndex - 1 + gallery.length) % gallery.length)}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-[#0A0A0A]/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-all opacity-0 group-hover:opacity-100"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-[#0A0A0A]/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-all"
                     aria-label="Imagen anterior"
                   >
                     <span className="material-symbols-outlined" style={{ fontSize: 18 }}>chevron_left</span>
                   </button>
                   <button
                     onClick={() => selectImage((activeIndex + 1) % gallery.length)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-[#0A0A0A]/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-all opacity-0 group-hover:opacity-100"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-9 h-9 bg-[#0A0A0A]/60 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-all"
                     aria-label="Imagen siguiente"
                   >
                     <span className="material-symbols-outlined" style={{ fontSize: 18 }}>chevron_right</span>
@@ -142,14 +159,14 @@ export default function ProductDetail({ product, recommended, breadcrumb }: Prop
             {gallery.length > 1 && (
               <div
                 ref={thumbsRef}
-                className="flex gap-2 overflow-x-auto pb-1"
+                className="flex gap-1.5 overflow-x-auto pb-1"
                 style={{ scrollbarWidth: 'none' }}
               >
                 {gallery.map((src, i) => (
                   <button
                     key={i}
                     onClick={() => selectImage(i)}
-                    className={`relative flex-none w-[72px] h-[90px] border transition-all duration-200 overflow-hidden ${
+                    className={`relative flex-none w-[60px] h-[75px] border transition-all duration-200 overflow-hidden ${
                       i === activeIndex
                         ? 'border-[#D4AF37] opacity-100'
                         : 'border-white/8 opacity-45 hover:opacity-75 hover:border-white/20'

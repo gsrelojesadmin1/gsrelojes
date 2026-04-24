@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useCart } from '@/context/CartContext'
 import { useFavorites } from '@/context/FavoritesContext'
+import { toastAddedToCart } from '@/lib/toast'
 import type { Product } from '@/lib/types'
 
 interface ProductGridProps {
@@ -49,6 +50,7 @@ function ProductCard({ product }: { product: Product }) {
     e.preventDefault()
     e.stopPropagation()
     addItem(product)
+    toastAddedToCart(product.name)
     setCartBounce(true)
     setTimeout(() => setCartBounce(false), 600)
   }

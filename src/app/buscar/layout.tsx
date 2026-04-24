@@ -1,4 +1,8 @@
 import { Suspense } from 'react'
+import { readFileSync } from 'fs'
+import path from 'path'
+import Header from '@/components/Header'
+import type { SiteData } from '@/lib/types'
 
 export const metadata = {
   title: 'Buscar Relojes | GS Relojes',
@@ -6,16 +10,25 @@ export const metadata = {
 }
 
 export default function BuscarLayout({ children }: { children: React.ReactNode }) {
+  let navbar = { brandName: 'GS RELOJES', links: [] as { id: string; label: string; href: string }[] }
+  let announcements: string[] = []
+  try {
+    const dataPath = path.join(process.cwd(), 'src/data/site-data.json')
+    const data: SiteData = JSON.parse(readFileSync(dataPath, 'utf-8'))
+    navbar = data.navbar
+    announcements = data.announcements ?? []
+  } catch {}
+
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-[#0A0A0A] pt-20 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
+    <>
+      <Header navbar={navbar} announcements={announcements} />
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#0A0A0A] pt-20 flex items-center justify-center">
           <span className="material-symbols-outlined text-white/20 animate-spin" style={{ fontSize: '32px' }}>refresh</span>
-          <p className="text-white/30 text-sm font-light">Cargando resultados...</p>
         </div>
-      </div>
-    }>
-      {children}
-    </Suspense>
+      }>
+        {children}
+      </Suspense>
+    </>
   )
 }

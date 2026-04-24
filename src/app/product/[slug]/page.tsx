@@ -2,6 +2,8 @@ import { readFileSync } from 'fs'
 import path from 'path'
 import { notFound } from 'next/navigation'
 import type { SiteData } from '@/lib/types'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import ProductDetail from './ProductDetail'
 
 export const dynamic = 'force-dynamic'
@@ -37,14 +39,20 @@ export default async function ProductPage({ params }: Props) {
   ].slice(0, 4)
 
   return (
-    <ProductDetail
-      product={product}
-      recommended={recommended}
-      breadcrumb={{
-        brand: brand?.name ?? product.brand,
-        collection: collection?.name,
-        model: model?.name,
-      }}
-    />
+    <>
+      <Header navbar={data.navbar} announcements={data.announcements} />
+      <main className="pt-[72px]">
+        <ProductDetail
+          product={product}
+          recommended={recommended}
+          breadcrumb={{
+            brand: brand?.name ?? product.brand,
+            collection: collection?.name,
+            model: model?.name,
+          }}
+        />
+      </main>
+      <Footer footer={data.footer} />
+    </>
   )
 }

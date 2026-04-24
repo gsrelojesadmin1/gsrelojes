@@ -60,6 +60,7 @@ export interface Product {
   image: string
   images?: string[]
   tags?: string[]
+  bestSeller?: boolean
   category: ProductCategory
   description: string
 }

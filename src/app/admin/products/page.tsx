@@ -16,6 +16,7 @@ const emptyForm = (): Omit<Product, 'id'> => ({
   image: '',
   images: [],
   tags: [],
+  bestSeller: false,
   category: { brandId: '', collectionId: '', modelId: '' },
   description: '',
 })
@@ -314,7 +315,7 @@ export default function AdminProductsPage() {
         <table className="w-full min-w-[860px]">
           <thead>
             <tr className="border-b border-white/8">
-              {['IMG', 'SKU (DISEÑO)', 'MARCA / NOMBRE', 'CATEGORÍA', 'PRECIO', 'OFERTA', ''].map(h => (
+              {['IMG', 'SKU (DISEÑO)', 'MARCA / NOMBRE', 'CATEGORÍA', 'PRECIO', 'OFERTA', 'DEST.', ''].map(h => (
                 <th key={h} className="px-4 py-4 text-left font-label-caps text-[9px] tracking-[0.15em] text-white/30 whitespace-nowrap">
                   {h}
                 </th>
@@ -349,6 +350,11 @@ export default function AdminProductsPage() {
                     <span className="text-[#D4AF37] text-sm tabular-nums font-light">₲{product.salePrice.toLocaleString('es-PY')}</span>
                   ) : (
                     <span className="text-white/15 text-xs">—</span>
+                  )}
+                </td>
+                <td className="px-4 py-4 text-center">
+                  {product.bestSeller && (
+                    <span className="material-symbols-outlined text-[#D4AF37]" style={{ fontSize: '16px' }} title="Más vendido">star</span>
                   )}
                 </td>
                 <td className="px-4 py-4 text-right">
@@ -545,6 +551,28 @@ export default function AdminProductsPage() {
                       </button>
                     </div>
                   </div>
+                </div>
+              </section>
+
+              {/* ── Más Vendidos toggle ── */}
+              <section>
+                <div className="flex items-center justify-between p-4 bg-[#D4AF37]/5 border border-[#D4AF37]/15">
+                  <div>
+                    <p className="font-label-caps text-[10px] tracking-[0.18em] text-[#D4AF37] mb-0.5">PRODUCTO MÁS VENDIDO</p>
+                    <p className="text-white/30 text-[11px] font-light">Aparece en la sección destacada del inicio</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => updateForm('bestSeller', !form.bestSeller)}
+                    className={`relative w-12 h-6 rounded-full transition-colors duration-200 flex-none ${
+                      form.bestSeller ? 'bg-[#D4AF37]' : 'bg-white/10'
+                    }`}
+                    aria-label="Toggle más vendido"
+                  >
+                    <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all duration-200 ${
+                      form.bestSeller ? 'left-7' : 'left-1'
+                    }`} />
+                  </button>
                 </div>
               </section>
 

@@ -8,7 +8,7 @@
     "badge": "ESTABLECIDO EN 1892",
     "title": "PRECISIÓN\nATEMPORAL",
     "subtitle": "",
-    "cta1Label": "",
+    "cta1Label": "VER COLECCION",
     "cta2Label": "",
     "backgroundImage": "https://i.pinimg.com/736x/3a/de/94/3ade9498207c026b61a023afbe451d23.jpg"
   },
@@ -18,18 +18,18 @@
       "badge": "ESTABLECIDO EN 1892",
       "title": "PRECISIÓN\nATEMPORAL",
       "subtitle": "",
-      "cta1Label": "",
+      "cta1Label": "VER COLECCION",
       "cta2Label": "",
       "backgroundImage": "https://i.pinimg.com/736x/3a/de/94/3ade9498207c026b61a023afbe451d23.jpg"
     },
     {
       "id": "slide-2",
-      "badge": "COLECCIÓN EXCLUSIVA",
-      "title": "CASIOS",
+      "badge": "SIEMPRE G-SCHOCK",
+      "title": "LOS DISEÑOS MAS EXCLUSIVOS",
       "subtitle": "",
-      "cta1Label": "",
+      "cta1Label": "QUIERO MI G-SHOCK",
       "cta2Label": "",
-      "backgroundImage": "https://i.pinimg.com/1200x/07/ac/a5/07aca538e1c90666421faa1b659e40e1.jpg"
+      "backgroundImage": "https://www.siemprecasio.es/wp-content/uploads/2022/12/Adventurers-Stone_portada-800x445.webp"
     }
   ],
   "bentoItems": [
@@ -71,6 +71,17 @@
         {
           "id": "mobyi41e-7p24a",
           "name": "G-SHOCK",
+          "models": []
+        }
+      ]
+    },
+    {
+      "id": "moc5t0x1-imdmw",
+      "name": "CURREN",
+      "collections": [
+        {
+          "id": "moc5t5cx-qns85",
+          "name": "CRONOGRAFO",
           "models": []
         }
       ]
@@ -149,38 +160,121 @@
       },
       "description": "",
       "id": "p1776980865928"
+    },
+    {
+      "sku": "KS9-EA3",
+      "slug": "curren-cronografo-ks9-ea3",
+      "brand": "CURREN",
+      "name": "CURREN CRONOGRAFO",
+      "price": 290000,
+      "image": "https://m.media-amazon.com/images/I/612srktTpPL._AC_SL1000_.jpg",
+      "images": [],
+      "tags": [
+        "NUEVO",
+        "CRONOGRAFO"
+      ],
+      "bestSeller": true,
+      "category": {
+        "brandId": "moc5t0x1-imdmw",
+        "collectionId": "moc5t5cx-qns85",
+        "modelId": ""
+      },
+      "description": "",
+      "id": "p1776989726293"
+    },
+    {
+      "sku": "8291",
+      "slug": "curren-cronografo-8291",
+      "brand": "CURREN",
+      "name": "CURREN CRONOGRAFO",
+      "price": 280000,
+      "image": "https://amrelojes.com.py/wp-content/uploads/2025/05/PhotoCollage_20250107_012033069.png",
+      "images": [],
+      "tags": [
+        "LIMITADO"
+      ],
+      "bestSeller": true,
+      "category": {
+        "brandId": "moc5t0x1-imdmw",
+        "collectionId": "moc5t5cx-qns85",
+        "modelId": ""
+      },
+      "description": "",
+      "id": "p1776989802206"
+    },
+    {
+      "sku": "GM-2140GEM-2ADR",
+      "slug": "casio-g-shock-gm-2140gem-2adr",
+      "brand": "CASIO",
+      "name": "CASIO G-SHOCK",
+      "price": 490000,
+      "salePrice": 360000,
+      "image": "https://www.tiempoderelojes.com.py/timthumb.php?src=https://www.tiempoderelojes.com.py/images/productos/2023/1539.png&a=t&w=226&h=271&q=95",
+      "images": [],
+      "tags": [
+        "HOT"
+      ],
+      "bestSeller": false,
+      "category": {
+        "brandId": "mobyhmd7-un2a8",
+        "collectionId": "mobyi41e-7p24a",
+        "modelId": ""
+      },
+      "description": "",
+      "id": "p1776992055897"
+    },
+    {
+      "sku": "45AD-3H65",
+      "slug": "curren-clasico-45ad-3h65",
+      "brand": "CURREN",
+      "name": "CURREN CLASICO",
+      "price": 320000,
+      "image": "https://clock.pe/cdn/shop/files/RELOJ_CURREN_ORIGINAL_ELEGANTE_PLATEADO_8439_CUR-129_CUR-130_CUR-131_4.webp?v=1756318333&width=1946",
+      "images": [],
+      "tags": [],
+      "bestSeller": false,
+      "category": {
+        "brandId": "moc5t0x1-imdmw",
+        "collectionId": "moc5t5cx-qns85",
+        "modelId": ""
+      },
+      "description": "",
+      "id": "p1776992158349"
+    },
+    {
+      "sku": "GM-S2100S-2AD",
+      "slug": "casio-g-shock-gm-s2100s-2ad",
+      "brand": "CASIO",
+      "name": "CASIO G-SHOCK",
+      "price": 490000,
+      "image": "https://www.tl.com.py/cdn/shop/files/image_0_5c4a6ccb-dd3c-4660-84b2-6b9a01e6fa23_994x994.jpg?v=1763467542",
+      "images": [],
+      "tags": [],
+      "bestSeller": false,
+      "category": {
+        "brandId": "mobyhmd7-un2a8",
+        "collectionId": "mobyi41e-7p24a",
+        "modelId": ""
+      },
+      "description": "",
+      "id": "p1776992414352"
     }
   ],
   "footer": {
-    "brandName": "HOROLOGICAL EXCELLENCE",
+    "brandName": "GS RELOJES",
     "links": [
       {
         "id": "f1",
-        "label": "Privacy Policy",
-        "href": "#"
+        "label": "Política de Privacidad",
+        "href": "/politica-de-privacidad"
       },
       {
         "id": "f2",
-        "label": "Terms of Service",
-        "href": "#"
-      },
-      {
-        "id": "f3",
-        "label": "Sustainability",
-        "href": "#"
-      },
-      {
-        "id": "f4",
-        "label": "Boutique Locator",
-        "href": "#"
-      },
-      {
-        "id": "f5",
-        "label": "Careers",
-        "href": "#"
+        "label": "Términos de Servicio",
+        "href": "/terminos-de-servicio"
       }
     ],
-    "copyright": "© 2024 HOROLOGICAL EXCELLENCE. MANUFACTURE EN SUISSE."
+    "copyright": "CALIDAD ASEGURADA-PRODUCTOS ORIGINALES"
   },
   "featureBadges": [
     {

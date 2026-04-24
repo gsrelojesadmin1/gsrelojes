@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { useCart } from '@/context/CartContext'
 import { useFavorites } from '@/context/FavoritesContext'
 import type { Product, SiteData } from '@/lib/types'
+import Footer from '@/components/Footer'
 
 // ── Estilos predefinidos de reloj ────────────────────────────
 const STYLES = ['VESTIR', 'DEPORTE', 'BUCEO', 'AVIADOR', 'DIGITAL', 'CLÁSICO', 'SPORT', 'LUXURY']
@@ -168,250 +169,253 @@ export default function BuscarPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] pt-20">
-      {/* ── Barra de búsqueda superior ──────────────────────── */}
-      <div className="border-b border-white/8 bg-[#0A0A0A]/95">
-        <div className="max-w-[1440px] mx-auto px-8 lg:px-12 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <form onSubmit={handleNewSearch} className="flex-1 flex items-center gap-3 bg-[#111] border border-white/10 px-4 py-3 focus-within:border-[#D4AF37]/30 transition-colors">
-            <span className="material-symbols-outlined text-white/30" style={{ fontSize: '18px' }}>search</span>
-            <input
-              value={searchInput}
-              onChange={e => setSearchInput(e.target.value)}
-              placeholder="Buscar relojes, marcas, modelos..."
-              className="flex-1 bg-transparent text-white text-sm font-light outline-none placeholder:text-white/25"
-              autoFocus
-            />
-            {searchInput && (
-              <button type="button" onClick={() => setSearchInput('')} className="text-white/25 hover:text-white/60">
-                <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>close</span>
+    <>
+      <div className="min-h-screen bg-[#0A0A0A] pt-[72px]">
+        {/* ── Barra de búsqueda superior ──────────────────────── */}
+        <div className="border-b border-white/8 bg-[#0A0A0A]/95">
+          <div className="max-w-[1440px] mx-auto px-8 lg:px-12 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <form onSubmit={handleNewSearch} className="flex-1 flex items-center gap-3 bg-[#111] border border-white/10 px-4 py-3 focus-within:border-[#D4AF37]/30 transition-colors">
+              <span className="material-symbols-outlined text-white/30" style={{ fontSize: '18px' }}>search</span>
+              <input
+                value={searchInput}
+                onChange={e => setSearchInput(e.target.value)}
+                placeholder="Buscar relojes, marcas, modelos..."
+                className="flex-1 bg-transparent text-white text-sm font-light outline-none placeholder:text-white/25"
+                autoFocus
+              />
+              {searchInput && (
+                <button type="button" onClick={() => setSearchInput('')} className="text-white/25 hover:text-white/60">
+                  <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>close</span>
+                </button>
+              )}
+              <button type="submit" className="font-label-caps text-[9px] tracking-[0.15em] text-[#D4AF37] hover:text-[#f2ca50] transition-colors px-2">
+                BUSCAR
               </button>
-            )}
-            <button type="submit" className="font-label-caps text-[9px] tracking-[0.15em] text-[#D4AF37] hover:text-[#f2ca50] transition-colors px-2">
-              BUSCAR
-            </button>
-          </form>
-          <Link href="/" className="flex items-center gap-1.5 text-white/25 hover:text-white/60 transition-colors">
-            <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>arrow_back</span>
-            <span className="font-label-caps text-[9px] tracking-[0.15em]">VOLVER</span>
-          </Link>
-        </div>
-      </div>
-
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-12 py-8">
-        {/* ── Header resultados ────────────────────────────────── */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-          <div>
-            {q ? (
-              <>
-                <p className="font-label-caps text-[9px] tracking-[0.2em] text-white/25 mb-1">RESULTADOS DE BÚSQUEDA</p>
-                <h1 className="text-white text-xl font-light">
-                  &ldquo;{q}&rdquo;
-                  {!loading && (
-                    <span className="text-white/25 text-sm ml-3 font-light">
-                      {results.length} {results.length === 1 ? 'pieza' : 'piezas'}
-                    </span>
-                  )}
-                </h1>
-              </>
-            ) : (
-              <>
-                <p className="font-label-caps text-[9px] tracking-[0.2em] text-white/25 mb-1">CATÁLOGO</p>
-                <h1 className="text-white text-xl font-light">
-                  Todos los Relojes
-                  {!loading && (
-                    <span className="text-white/25 text-sm ml-3 font-light">{results.length} piezas</span>
-                  )}
-                </h1>
-              </>
-            )}
+            </form>
+            <Link href="/" className="flex items-center gap-1.5 text-white/25 hover:text-white/60 transition-colors">
+              <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>arrow_back</span>
+              <span className="font-label-caps text-[9px] tracking-[0.15em]">VOLVER</span>
+            </Link>
           </div>
+        </div>
 
-          <div className="flex items-center gap-3">
-            {/* Botón filtros mobile */}
-            <button
-              onClick={() => setFiltersOpen(!filtersOpen)}
-              className={`lg:hidden flex items-center gap-2 px-4 py-2.5 border font-label-caps text-[9px] tracking-[0.15em] transition-colors ${filtersOpen ? 'border-[#D4AF37]/40 text-[#D4AF37]' : 'border-white/12 text-white/40'}`}
-            >
-              <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>tune</span>
-              FILTROS {activeFilterCount > 0 && `(${activeFilterCount})`}
-            </button>
+        <div className="max-w-[1440px] mx-auto px-8 lg:px-12 py-8">
+          {/* ── Header resultados ────────────────────────────────── */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+            <div>
+              {q ? (
+                <>
+                  <p className="font-label-caps text-[9px] tracking-[0.2em] text-white/25 mb-1">RESULTADOS DE BÚSQUEDA</p>
+                  <h1 className="text-white text-xl font-light">
+                    &ldquo;{q}&rdquo;
+                    {!loading && (
+                      <span className="text-white/25 text-sm ml-3 font-light">
+                        {results.length} {results.length === 1 ? 'pieza' : 'piezas'}
+                      </span>
+                    )}
+                  </h1>
+                </>
+              ) : (
+                <>
+                  <p className="font-label-caps text-[9px] tracking-[0.2em] text-white/25 mb-1">CATÁLOGO</p>
+                  <h1 className="text-white text-xl font-light">
+                    Todos los Relojes
+                    {!loading && (
+                      <span className="text-white/25 text-sm ml-3 font-light">{results.length} piezas</span>
+                    )}
+                  </h1>
+                </>
+              )}
+            </div>
 
-            {/* Sort */}
-            <div className="flex items-center gap-2">
-              <span className="font-label-caps text-[9px] tracking-[0.15em] text-white/25 hidden sm:block">ORDENAR</span>
-              <select
-                value={sortBy}
-                onChange={e => setSortBy(e.target.value)}
-                className="bg-[#111] border border-white/10 text-white text-xs font-light px-3 py-2.5 outline-none focus:border-[#D4AF37]/30 transition-colors cursor-pointer"
+            <div className="flex items-center gap-3">
+              {/* Botón filtros mobile */}
+              <button
+                onClick={() => setFiltersOpen(!filtersOpen)}
+                className={`lg:hidden flex items-center gap-2 px-4 py-2.5 border font-label-caps text-[9px] tracking-[0.15em] transition-colors ${filtersOpen ? 'border-[#D4AF37]/40 text-[#D4AF37]' : 'border-white/12 text-white/40'}`}
               >
-                {SORT_OPTIONS.map(opt => (
-                  <option key={opt.value} value={opt.value}>{opt.label}</option>
-                ))}
-              </select>
+                <span className="material-symbols-outlined" style={{ fontSize: '15px' }}>tune</span>
+                FILTROS {activeFilterCount > 0 && `(${activeFilterCount})`}
+              </button>
+
+              {/* Sort */}
+              <div className="flex items-center gap-2">
+                <span className="font-label-caps text-[9px] tracking-[0.15em] text-white/25 hidden sm:block">ORDENAR</span>
+                <select
+                  value={sortBy}
+                  onChange={e => setSortBy(e.target.value)}
+                  className="bg-[#111] border border-white/10 text-white text-xs font-light px-3 py-2.5 outline-none focus:border-[#D4AF37]/30 transition-colors cursor-pointer"
+                >
+                  {SORT_OPTIONS.map(opt => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="flex gap-8">
-          {/* ── Sidebar de filtros ──────────────────────────────── */}
-          <aside className={`${filtersOpen ? 'block' : 'hidden'} lg:block w-full lg:w-64 flex-none`}>
-            <div className="bg-[#0d0d0d] border border-white/8 p-6 sticky top-24">
-              <div className="flex items-center justify-between mb-5">
-                <p className="font-label-caps text-[10px] tracking-[0.2em] text-white/50">FILTROS</p>
-                {activeFilterCount > 0 && (
-                  <button
-                    onClick={clearFilters}
-                    className="font-label-caps text-[9px] tracking-[0.12em] text-[#D4AF37]/60 hover:text-[#D4AF37] transition-colors"
-                  >
-                    LIMPIAR ({activeFilterCount})
-                  </button>
-                )}
-              </div>
-
-              {/* ── Filtro: Marca ─── */}
-              <FilterSection title="MARCA">
-                <div className="space-y-1.5">
-                  {brands.map(brand => (
-                    <label key={brand} className="flex items-center gap-2.5 cursor-pointer group">
-                      <div
-                        onClick={() => toggleBrand(brand)}
-                        className={`w-4 h-4 border flex-none flex items-center justify-center transition-colors cursor-pointer ${
-                          selectedBrands.includes(brand)
-                            ? 'border-[#D4AF37] bg-[#D4AF37]'
-                            : 'border-white/20 group-hover:border-white/40'
-                        }`}
-                      >
-                        {selectedBrands.includes(brand) && (
-                          <span className="material-symbols-outlined text-[#0A0A0A]" style={{ fontSize: '11px' }}>check</span>
-                        )}
-                      </div>
-                      <span
-                        onClick={() => toggleBrand(brand)}
-                        className={`text-xs font-light leading-none transition-colors cursor-pointer ${
-                          selectedBrands.includes(brand) ? 'text-white' : 'text-white/40 group-hover:text-white/70'
-                        }`}
-                      >
-                        {brand}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </FilterSection>
-
-              {/* ── Filtro: Modelo/Colección ─── */}
-              <FilterSection title="COLECCIÓN">
-                <div className="space-y-1.5 max-h-40 overflow-y-auto pr-1" style={{ scrollbarWidth: 'thin', scrollbarColor: '#ffffff20 transparent' }}>
-                  {models.map(model => (
-                    <label key={model} className="flex items-center gap-2.5 cursor-pointer group">
-                      <div
-                        onClick={() => toggleModel(model)}
-                        className={`w-4 h-4 border flex-none flex items-center justify-center transition-colors cursor-pointer ${
-                          selectedModels.includes(model)
-                            ? 'border-[#D4AF37] bg-[#D4AF37]'
-                            : 'border-white/20 group-hover:border-white/40'
-                        }`}
-                      >
-                        {selectedModels.includes(model) && (
-                          <span className="material-symbols-outlined text-[#0A0A0A]" style={{ fontSize: '11px' }}>check</span>
-                        )}
-                      </div>
-                      <span
-                        onClick={() => toggleModel(model)}
-                        className={`text-xs font-light leading-none transition-colors cursor-pointer ${
-                          selectedModels.includes(model) ? 'text-white' : 'text-white/40 group-hover:text-white/70'
-                        }`}
-                      >
-                        {model}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </FilterSection>
-
-              {/* ── Filtro: Precio ─── */}
-              <FilterSection title="PRECIO">
-                <div className="space-y-1.5">
-                  {PRICE_RANGES.map((range, i) => (
-                    <label key={i} className="flex items-center gap-2.5 cursor-pointer group">
-                      <div
-                        onClick={() => setSelectedPriceRange(selectedPriceRange === i ? null : i)}
-                        className={`w-4 h-4 border flex-none flex items-center justify-center rounded-full transition-colors cursor-pointer ${
-                          selectedPriceRange === i
-                            ? 'border-[#D4AF37] bg-[#D4AF37]'
-                            : 'border-white/20 group-hover:border-white/40'
-                        }`}
-                      >
-                        {selectedPriceRange === i && (
-                          <div className="w-2 h-2 rounded-full bg-[#0A0A0A]" />
-                        )}
-                      </div>
-                      <span
-                        onClick={() => setSelectedPriceRange(selectedPriceRange === i ? null : i)}
-                        className={`text-xs font-light leading-none transition-colors cursor-pointer ${
-                          selectedPriceRange === i ? 'text-white' : 'text-white/40 group-hover:text-white/70'
-                        }`}
-                      >
-                        {range.label}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </FilterSection>
-
-              {/* ── Filtro: Estilo ─── */}
-              <FilterSection title="ESTILO" noBorder>
-                <div className="flex flex-wrap gap-2">
-                  {STYLES.map(style => (
+          <div className="flex gap-8">
+            {/* ── Sidebar de filtros ──────────────────────────────── */}
+            <aside className={`${filtersOpen ? 'block' : 'hidden'} lg:block w-full lg:w-64 flex-none`}>
+              <div className="bg-[#0d0d0d] border border-white/8 p-6 sticky top-24">
+                <div className="flex items-center justify-between mb-5">
+                  <p className="font-label-caps text-[10px] tracking-[0.2em] text-white/50">FILTROS</p>
+                  {activeFilterCount > 0 && (
                     <button
-                      key={style}
-                      onClick={() => toggleStyle(style)}
-                      className={`px-2.5 py-1.5 font-label-caps text-[8px] tracking-[0.12em] border transition-all duration-150 ${
-                        selectedStyles.includes(style)
-                          ? 'border-[#D4AF37]/60 bg-[#D4AF37]/10 text-[#D4AF37]'
-                          : 'border-white/10 text-white/30 hover:border-white/25 hover:text-white/60'
-                      }`}
+                      onClick={clearFilters}
+                      className="font-label-caps text-[9px] tracking-[0.12em] text-[#D4AF37]/60 hover:text-[#D4AF37] transition-colors"
                     >
-                      {style}
+                      LIMPIAR ({activeFilterCount})
                     </button>
+                  )}
+                </div>
+
+                {/* ── Filtro: Marca ─── */}
+                <FilterSection title="MARCA">
+                  <div className="space-y-1.5">
+                    {brands.map(brand => (
+                      <label key={brand} className="flex items-center gap-2.5 cursor-pointer group">
+                        <div
+                          onClick={() => toggleBrand(brand)}
+                          className={`w-4 h-4 border flex-none flex items-center justify-center transition-colors cursor-pointer ${
+                            selectedBrands.includes(brand)
+                              ? 'border-[#D4AF37] bg-[#D4AF37]'
+                              : 'border-white/20 group-hover:border-white/40'
+                          }`}
+                        >
+                          {selectedBrands.includes(brand) && (
+                            <span className="material-symbols-outlined text-[#0A0A0A]" style={{ fontSize: '11px' }}>check</span>
+                          )}
+                        </div>
+                        <span
+                          onClick={() => toggleBrand(brand)}
+                          className={`text-xs font-light leading-none transition-colors cursor-pointer ${
+                            selectedBrands.includes(brand) ? 'text-white' : 'text-white/40 group-hover:text-white/70'
+                          }`}
+                        >
+                          {brand}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </FilterSection>
+
+                {/* ── Filtro: Modelo/Colección ─── */}
+                <FilterSection title="COLECCIÓN">
+                  <div className="space-y-1.5 max-h-40 overflow-y-auto pr-1" style={{ scrollbarWidth: 'thin', scrollbarColor: '#ffffff20 transparent' }}>
+                    {models.map(model => (
+                      <label key={model} className="flex items-center gap-2.5 cursor-pointer group">
+                        <div
+                          onClick={() => toggleModel(model)}
+                          className={`w-4 h-4 border flex-none flex items-center justify-center transition-colors cursor-pointer ${
+                            selectedModels.includes(model)
+                              ? 'border-[#D4AF37] bg-[#D4AF37]'
+                              : 'border-white/20 group-hover:border-white/40'
+                          }`}
+                        >
+                          {selectedModels.includes(model) && (
+                            <span className="material-symbols-outlined text-[#0A0A0A]" style={{ fontSize: '11px' }}>check</span>
+                          )}
+                        </div>
+                        <span
+                          onClick={() => toggleModel(model)}
+                          className={`text-xs font-light leading-none transition-colors cursor-pointer ${
+                            selectedModels.includes(model) ? 'text-white' : 'text-white/40 group-hover:text-white/70'
+                          }`}
+                        >
+                          {model}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </FilterSection>
+
+                {/* ── Filtro: Precio ─── */}
+                <FilterSection title="PRECIO">
+                  <div className="space-y-1.5">
+                    {PRICE_RANGES.map((range, i) => (
+                      <label key={i} className="flex items-center gap-2.5 cursor-pointer group">
+                        <div
+                          onClick={() => setSelectedPriceRange(selectedPriceRange === i ? null : i)}
+                          className={`w-4 h-4 border flex-none flex items-center justify-center rounded-full transition-colors cursor-pointer ${
+                            selectedPriceRange === i
+                              ? 'border-[#D4AF37] bg-[#D4AF37]'
+                              : 'border-white/20 group-hover:border-white/40'
+                          }`}
+                        >
+                          {selectedPriceRange === i && (
+                            <div className="w-2 h-2 rounded-full bg-[#0A0A0A]" />
+                          )}
+                        </div>
+                        <span
+                          onClick={() => setSelectedPriceRange(selectedPriceRange === i ? null : i)}
+                          className={`text-xs font-light leading-none transition-colors cursor-pointer ${
+                            selectedPriceRange === i ? 'text-white' : 'text-white/40 group-hover:text-white/70'
+                          }`}
+                        >
+                          {range.label}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </FilterSection>
+
+                {/* ── Filtro: Estilo ─── */}
+                <FilterSection title="ESTILO" noBorder>
+                  <div className="flex flex-wrap gap-2">
+                    {STYLES.map(style => (
+                      <button
+                        key={style}
+                        onClick={() => toggleStyle(style)}
+                        className={`px-2.5 py-1.5 font-label-caps text-[8px] tracking-[0.12em] border transition-all duration-150 ${
+                          selectedStyles.includes(style)
+                            ? 'border-[#D4AF37]/60 bg-[#D4AF37]/10 text-[#D4AF37]'
+                            : 'border-white/10 text-white/30 hover:border-white/25 hover:text-white/60'
+                        }`}
+                      >
+                        {style}
+                      </button>
+                    ))}
+                  </div>
+                </FilterSection>
+              </div>
+            </aside>
+
+            {/* ── Grid de resultados ──────────────────────────────── */}
+            <div className="flex-1 min-w-0">
+              {loading ? (
+                <div className="flex flex-col items-center justify-center py-32 gap-4">
+                  <span className="material-symbols-outlined text-white/20 animate-spin" style={{ fontSize: '32px' }}>refresh</span>
+                  <p className="text-white/30 text-sm font-light">Cargando...</p>
+                </div>
+              ) : results.length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-32 gap-5 text-center">
+                  <span className="material-symbols-outlined text-white/15" style={{ fontSize: '52px' }}>search_off</span>
+                  <div>
+                    <p className="font-label-caps text-[10px] tracking-[0.2em] text-white/30 mb-2">SIN RESULTADOS</p>
+                    <p className="text-white/20 text-sm font-light max-w-xs">
+                      {q ? `No encontramos piezas que coincidan con "${q}".` : 'Ninguna pieza coincide con los filtros seleccionados.'}
+                    </p>
+                  </div>
+                  {activeFilterCount > 0 && (
+                    <button onClick={clearFilters} className="font-label-caps text-[9px] tracking-[0.2em] text-[#D4AF37] border-b border-[#D4AF37]/40 pb-0.5 hover:border-[#D4AF37] transition-colors">
+                      LIMPIAR FILTROS
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-y-12 gap-x-5">
+                  {results.map(product => (
+                    <ResultCard key={product.id} product={product} />
                   ))}
                 </div>
-              </FilterSection>
+              )}
             </div>
-          </aside>
-
-          {/* ── Grid de resultados ──────────────────────────────── */}
-          <div className="flex-1 min-w-0">
-            {loading ? (
-              <div className="flex flex-col items-center justify-center py-32 gap-4">
-                <span className="material-symbols-outlined text-white/20 animate-spin" style={{ fontSize: '32px' }}>refresh</span>
-                <p className="text-white/30 text-sm font-light">Cargando...</p>
-              </div>
-            ) : results.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-32 gap-5 text-center">
-                <span className="material-symbols-outlined text-white/15" style={{ fontSize: '52px' }}>search_off</span>
-                <div>
-                  <p className="font-label-caps text-[10px] tracking-[0.2em] text-white/30 mb-2">SIN RESULTADOS</p>
-                  <p className="text-white/20 text-sm font-light max-w-xs">
-                    {q ? `No encontramos piezas que coincidan con "${q}".` : 'Ninguna pieza coincide con los filtros seleccionados.'}
-                  </p>
-                </div>
-                {activeFilterCount > 0 && (
-                  <button onClick={clearFilters} className="font-label-caps text-[9px] tracking-[0.2em] text-[#D4AF37] border-b border-[#D4AF37]/40 pb-0.5 hover:border-[#D4AF37] transition-colors">
-                    LIMPIAR FILTROS
-                  </button>
-                )}
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-y-12 gap-x-5">
-                {results.map(product => (
-                  <ResultCard key={product.id} product={product} />
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </div>
-    </div>
+      {siteData && <Footer footer={siteData.footer} />}
+    </>
   )
 }
 

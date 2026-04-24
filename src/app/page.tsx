@@ -6,7 +6,8 @@ import HeroSection from '@/components/HeroSection'
 import BentoGrid from '@/components/BentoGrid'
 import FeatureBadges from '@/components/FeatureBadges'
 import BrandShortcuts from '@/components/BrandShortcuts'
-import ProductGrid from '@/components/ProductGrid'
+import BestSellersSection from '@/components/BestSellersSection'
+import HomeCatalog from '@/components/HomeCatalog'
 import Footer from '@/components/Footer'
 
 export const dynamic = 'force-dynamic'
@@ -24,13 +25,10 @@ export default function Home() {
       <Header navbar={data.navbar} announcements={data.announcements} />
       <main className="pt-28">
         <HeroSection slides={data.heroSlides ?? [data.hero]} />
-        
-        {/* Nuevas secciones de confianza y atajos */}
-        <FeatureBadges badges={data.featureBadges} />
         <BrandShortcuts shortcuts={data.brandShortcuts} />
-        
-        <ProductGrid products={data.products} />
-        
+        <BestSellersSection products={data.products} />
+        <HomeCatalog products={data.products} watchBrands={data.watchBrands} />
+        <FeatureBadges badges={data.featureBadges} />
         <BentoGrid items={data.bentoItems ?? []} />
       </main>
       <Footer footer={data.footer} />
