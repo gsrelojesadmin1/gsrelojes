@@ -189,7 +189,9 @@
       "name": "CURREN CRONOGRAFO",
       "price": 280000,
       "image": "https://amrelojes.com.py/wp-content/uploads/2025/05/PhotoCollage_20250107_012033069.png",
-      "images": [],
+      "images": [
+        "https://amrelojes.com.py/wp-content/uploads/2025/05/PhotoCollage_20250519_135725458-300x300.png"
+      ],
       "tags": [
         "LIMITADO"
       ],
@@ -200,6 +202,14 @@
         "modelId": ""
       },
       "description": "",
+      "specifications": [
+        {
+          "label": "CORONA 21 MM",
+          "value": "CUERO PURO "
+        }
+      ],
+      "warranty": "",
+      "shipping": "",
       "id": "p1776989802206"
     },
     {
@@ -332,5 +342,9 @@
     "100% originales✅",
     "ENVÍO GRATIS A TODO EL PAIS🚚",
     "DESCUBRE LA EDICIÓN LIMITADA"
-  ]
+  ],
+  "policyDefaults": {
+    "warranty": "Garantia de 6 meses",
+    "shipping": "envio gratis a todo el pais "
+  }
 }
